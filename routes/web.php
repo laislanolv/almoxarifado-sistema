@@ -16,5 +16,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Organizações
+Route::resource('organizacoes', 'OrganizacoesController', ['parameters' => [
+    'organizacoes' => 'organizacao'
+]]);
+
 // Cidades
 Route::get('cidades/{estado}', 'CidadesController@getCidades');
