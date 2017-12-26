@@ -28,10 +28,11 @@ class OrganizacoesController extends Controller {
     }
 
     public function edit(Organizacao $organizacao) {
-        return view('organizacoes.edit', compact('organizacao'));
+        $estados = Estado::pluck('nome', 'id');
+        return view('organizacoes.edit', compact('organizacao'))->with('estados', $estados);
     }
 
-    public function update(OrganizacoesRequest $request, $organizacao) {
+    public function update(OrganizacoesRequest $request, Organizacao $organizacao) {
         $organizacao->update($request->all());
         return redirect()->route('organizacoes.index')->with('success', 'Editado com sucesso!');
     }

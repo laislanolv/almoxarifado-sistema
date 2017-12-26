@@ -14,7 +14,7 @@
             <nav class="navbar">
                 <div class="container-fluid">
                     <section class="navbar-header">
-                        <a href="#" class="navbar-brand">Estoque</a>
+                        <a href="/organizacoes" class="navbar-brand">Estoque</a>
                         <a href="/organizacoes" class="navbar-brand">Organizações</a>
                     </section>
                 </div>

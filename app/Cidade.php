@@ -8,6 +8,6 @@ class Cidade extends Model {
     protected $table = 'cidades';
 
     public function estado() {
-        return $this->belongsTo('App\Estado');
+        return $this->belongsTo('App\Estado', 'id_estado');
     }
 }

@@ -14,17 +14,17 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Nome:</strong>
-            {!! Form::text('nome', null, ['placeholder' => 'Nome', 'class' => 'form-control']) !!}
+            {!! Form::text('nome', isset($organizacao) ? $organizacao->nome : null, ['placeholder' => 'Nome', 'class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Observações:</strong>
-            {!! Form::textarea('observacoes', null, ['placeholder' => 'Observações', 'class' => 'form-control']) !!}
+            {!! Form::textarea('observacoes', isset($organizacao) ? $organizacao->observacoes : null, ['placeholder' => 'Observações', 'class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-        {!! Form::submit('Cadastrar', ['class' => 'btn btn-primary']) !!}
+        {!! Form::submit('Editar', ['class' => 'btn btn-primary']) !!}
     </div>
 </div>
 
@@ -33,9 +33,10 @@
     $(document).ready(function() {
         $('select[name=estado] option:eq(0)').prop('selected', true);
         $('select[name=id_cidade]').prop('disabled', true);
+        $('select[name=id_cidade]').append('<option value="">Cidades</option>');
     });
 
-    $('select[name=estado]').change(function () {
+    $('select[name=estado]').change(function() {
         var id_estado = $(this).val();
         
         if (id_estado != '') {
@@ -43,7 +44,7 @@
                 $('select[name=id_cidade]').empty();
                 $('select[name=id_cidade]').append('<option value="">Cidades</option>');
 
-                $.each(cidades, function (key, value) {
+                $.each(cidades, function(key, value) {
                     $('select[name=id_cidade]').append('<option value=' + value.id + '>' + value.nome + '</option>');
                 });
 
