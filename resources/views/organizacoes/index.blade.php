@@ -16,13 +16,14 @@
                 <th>ID</th>
                 <th>Nome</th>
                 <th>Observações</th>
+                <th>Cadastro</th>
                 <th>Status</th>
                 <th style="width: 20%;">Ações</th>
             </thead>
             <tbody>
                 @if($organizacoes->total() == 0)
                     <tr>
-                        <th class="text-center" colspan="5">Nenhuma Organização encontrada</th>
+                        <th class="text-center" colspan="6">Nenhuma Organização encontrada</th>
                     </tr>
                 @else
                     @foreach ($organizacoes as $organizacao)
@@ -40,6 +41,7 @@
                                     --
                                 @endif
                             </td>
+                            <td>{{ \Carbon\Carbon::parse($organizacao->criado)->format('d/m/Y') }}</td>
                             <td>
                                 @if ($organizacao->status == 0)
                                     <span class="label label-default">Inativo</span>

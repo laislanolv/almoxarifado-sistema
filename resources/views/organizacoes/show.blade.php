@@ -15,6 +15,12 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
+            <strong>ID:</strong>
+            {{ $organizacao->id }}
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
             <strong>Estado:</strong>
             {{ $organizacao->cidade->estado->nome }}
         </div>
@@ -35,6 +41,12 @@
         <div class="form-group">
             <strong>Observações:</strong>
             {{ $organizacao->observacoes == null ? '--' : $organizacao->observacoes }}
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Cadastro:</strong>
+            {{ \Carbon\Carbon::parse($organizacao->criado)->format('d/m/Y') }}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
