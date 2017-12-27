@@ -50,7 +50,7 @@
                             <td>
                                 <a href="{{ route('organizacoes.show', $organizacao->id) }}" class="btn btn-info" title="Visualizar"><i class="fa fa-eye"></i></a>
                                 <a href="{{ route('organizacoes.edit', $organizacao->id) }}" class="btn btn-primary" title="Editar"><i class="fa fa-pencil"></i></a>
-                                <a href="#" class="btn btn-danger" title="Excluir" data-toggle="modal" data-target="#modal-excluir"><i class="fa fa-trash"></i></a>
+                                <a href="#" class="btn btn-danger" title="Excluir" data-toggle="modal" data-target="#modal_excluir"><i class="fa fa-trash"></i></a>
                             </td>
                         </tr>
                     @endforeach
@@ -65,7 +65,7 @@
     </section>
     
     @if($organizacoes->total() > 0)
-        <div id="modal-excluir" class="modal fade" tabindex="-1" role="dialog">
+        <div id="modal_excluir" class="modal fade" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
