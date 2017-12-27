@@ -61,7 +61,7 @@
 
     <section class="text-center">
         {{ $organizacoes->render() }}
-        <h6><b>{{ $organizacoes->total() }}</b> registros no total</h6>
+        <h6><b>{{ $organizacoes->total() }}</b> {{ $organizacoes->total() == 1 ? 'registro' : 'registros' }} no total</h6>
     </section>
     
     @if($organizacoes->total() > 0)
