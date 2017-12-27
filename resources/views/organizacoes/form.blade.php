@@ -33,7 +33,7 @@
     $(document).ready(function() {
         $('select[name=estado] option:eq(0)').prop('selected', true);
         $('select[name=id_cidade]').prop('disabled', true);
-        $('select[name=id_cidade]').append('<option value="">Cidades</option>');
+        $('select[name=id_cidade] option:eq(0)').prop('selected', true);
     });
 
     $('select[name=estado]').change(function() {
