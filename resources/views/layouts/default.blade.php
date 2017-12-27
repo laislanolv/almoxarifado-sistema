@@ -21,7 +21,7 @@
             </nav>
         </header>
 
-        <main class="container">
+        <main class="container" style="margin-bottom: 20px;">
           @yield('content')
         </main>
 

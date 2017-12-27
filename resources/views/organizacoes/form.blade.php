@@ -56,5 +56,9 @@
             $('select[name=id_cidade]').prop('disabled', true);
         }
     });
+
+    $('#form_organizacoes').submit(function() {
+        $(this).find('input[type=submit]').prop('disabled', true).attr('value', 'Aguarde...');
+    });
 </script>
 @endsection
