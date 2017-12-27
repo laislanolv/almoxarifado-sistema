@@ -8,7 +8,7 @@
             <h2>Visualizar Organização</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-primary" href="{{ route('organizacoes.index') }}"> Voltar</a>
+            <a class="btn btn-primary" href="{{ route('organizacoes.index') }}">Voltar</a>
         </div>
     </div>
 </div>
@@ -34,7 +34,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Observações:</strong>
-            {{ $organizacao->observacoes }}
+            {{ $organizacao->observacoes == null ? '--' : $organizacao->observacoes }}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">

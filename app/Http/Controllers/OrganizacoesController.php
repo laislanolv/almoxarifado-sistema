@@ -10,7 +10,7 @@ use App\Http\Requests\OrganizacoesRequest;
 class OrganizacoesController extends Controller {
     public function index() {
         $organizacoes = Organizacao::orderBy('id', 'asc')->paginate(10);
-        return view('organizacoes.index', compact('organizacoes'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('organizacoes.index', compact('organizacoes'))->with('limite_texto', '30');
     }
 
     public function create() {

@@ -8,7 +8,7 @@
                 <h2>Editar Organização</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('organizacoes.index') }}"> Voltar</a>
+                <a class="btn btn-primary" href="{{ route('organizacoes.index') }}">Voltar</a>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
     </div>
     @endif
 
-    {!! Form::open(array('method'=>'PATCH', 'route' => ['organizacoes.update', $organizacao->id])) !!}
+    {!! Form::open(array('method' => 'patch', 'route' => ['organizacoes.update', $organizacao->id])) !!}
         @include('organizacoes.form')
     {!! Form::close() !!}
 @endsection

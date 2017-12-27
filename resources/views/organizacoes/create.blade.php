@@ -8,7 +8,7 @@
                 <h2>Cadastrar Organizações</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('organizacoes.index') }}"> Voltar</a>
+                <a class="btn btn-primary" href="{{ route('organizacoes.index') }}">Voltar</a>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
     </div>
     @endif
 
-    {!! Form::open(array('method'=>'POST', 'route' => 'organizacoes.store')) !!}
+    {!! Form::open(array('method' => 'post', 'route' => 'organizacoes.store')) !!}
         @include('organizacoes.form')
     {!! Form::close() !!}
 @endsection
