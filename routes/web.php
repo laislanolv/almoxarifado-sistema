@@ -19,6 +19,9 @@ Route::get('/', function () {
 // Marcas
 Route::resource('marcas', 'MarcasController');
 
+// Unidade de Medidas
+Route::resource('unidades', 'UnidadeMedidasController');
+
 // Organizações
 Route::resource('organizacoes', 'OrganizacoesController', ['parameters' => [
     'organizacoes' => 'organizacao'

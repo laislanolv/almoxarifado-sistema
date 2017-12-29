@@ -15,6 +15,7 @@
                 <div class="container-fluid">
                     <section class="navbar-header">
                         <a href="/marcas" class="navbar-brand">Marcas</a>
+                        <a href="/unidades" class="navbar-brand">Unidades</a>
                         <a href="/organizacoes" class="navbar-brand">Organizações</a>
                     </section>
                 </div>
