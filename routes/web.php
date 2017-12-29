@@ -14,6 +14,9 @@
 // Welcome
 Route::get('/', 'HomeController@index');
 
+// Departamentos
+Route::resource('departamentos', 'DepartamentosController');
+
 // Marcas
 Route::resource('marcas', 'MarcasController');
 
