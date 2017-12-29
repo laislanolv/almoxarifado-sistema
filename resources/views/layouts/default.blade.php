@@ -14,9 +14,10 @@
             <nav class="navbar">
                 <div class="container-fluid">
                     <section class="navbar-header">
-                        <a href="/marcas" class="navbar-brand">Marcas</a>
-                        <a href="/unidades" class="navbar-brand">Unidades</a>
-                        <a href="/organizacoes" class="navbar-brand">Organizações</a>
+                        <a href="/" class="navbar-brand">Início</a>
+                        <a href="{{ route('marcas.index') }}" class="navbar-brand">Marcas</a>
+                        <a href="{{ route('unidades.index') }}" class="navbar-brand">Unidades</a>
+                        <a href="{{ route('organizacoes.index') }}" class="navbar-brand">Organizações</a>
                     </section>
                 </div>
             </nav>
