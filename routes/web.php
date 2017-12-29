@@ -22,6 +22,9 @@ Route::resource('marcas', 'MarcasController');
 // Unidade de Medidas
 Route::resource('unidades', 'UnidadeMedidasController');
 
+// Categorias
+Route::resource('categorias', 'CategoriasController');
+
 // Organizações
 Route::resource('organizacoes', 'OrganizacoesController', ['parameters' => [
     'organizacoes' => 'organizacao'
