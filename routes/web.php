@@ -16,6 +16,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Marcas
+Route::resource('marcas', 'MarcasController');
+
 // Organizações
 Route::resource('organizacoes', 'OrganizacoesController', ['parameters' => [
     'organizacoes' => 'organizacao'
