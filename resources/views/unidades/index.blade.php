@@ -22,7 +22,7 @@
             <tbody>
                 @if($unidades->total() == 0)
                     <tr>
-                        <th class="text-center" colspan="6">Nenhuma Unidade encontrada</th>
+                        <th class="text-center" colspan="5">Nenhuma Unidade encontrada</th>
                     </tr>
                 @else
                     @foreach ($unidades as $unidade)

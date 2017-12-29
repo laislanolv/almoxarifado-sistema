@@ -55,8 +55,8 @@
 
             .links > a {
                 color: #636b6f;
-                padding: 0 10px;
-                font-size: 12px;
+                padding: 0 3px;
+                font-size: 11px;
                 font-weight: 600;
                 letter-spacing: .1rem;
                 text-decoration: none;
@@ -83,6 +83,7 @@
                     <a href="{{ route('marcas.index') }}">Marcas</a>
                     <a href="{{ route('unidades.index') }}">Unidades</a>
                     <a href="{{ route('categorias.index') }}">Categorias</a>
+                    <a href="{{ route('produtos.index') }}">Produtos</a>
                     <a href="{{ route('organizacoes.index') }}">Organizações</a>
                 </div>
             </div>

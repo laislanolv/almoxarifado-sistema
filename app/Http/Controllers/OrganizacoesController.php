@@ -29,7 +29,7 @@ class OrganizacoesController extends Controller {
 
     public function edit(Organizacao $organizacao) {
         $estados = Estado::pluck('nome', 'id');
-        return view('organizacoes.edit', compact('organizacao'))->with('estados', $estados);
+        return view('organizacoes.edit', compact('estados', 'organizacao'));
     }
 
     public function update(OrganizacoesRequest $request, Organizacao $organizacao) {

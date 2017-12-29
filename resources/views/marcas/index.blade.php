@@ -22,7 +22,7 @@
             <tbody>
                 @if($marcas->total() == 0)
                     <tr>
-                        <th class="text-center" colspan="6">Nenhuma Marca encontrada</th>
+                        <th class="text-center" colspan="5">Nenhuma Marca encontrada</th>
                     </tr>
                 @else
                     @foreach ($marcas as $marca)

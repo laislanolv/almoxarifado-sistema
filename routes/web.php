@@ -25,6 +25,9 @@ Route::resource('unidades', 'UnidadeMedidasController');
 // Categorias
 Route::resource('categorias', 'CategoriasController');
 
+// Produtos
+Route::resource('produtos', 'ProdutosController');
+
 // Organizações
 Route::resource('organizacoes', 'OrganizacoesController', ['parameters' => [
     'organizacoes' => 'organizacao'
