@@ -14,6 +14,11 @@
 // Welcome
 Route::get('/', 'HomeController@index');
 
+// Tipos de Usuários
+Route::resource('tipos-usuarios', 'UsuariosTiposController', ['parameters' => [
+    'tipos-usuarios' => 'tipo'
+]]);
+
 // Departamentos
 Route::resource('departamentos', 'DepartamentosController');
 
