@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Estoque\Http\Controllers;
 
-use App\Marca;
-use App\Categoria;
-use App\UnidadeMedida;
-use App\Produto;
+use Estoque\Marca;
+use Estoque\Categoria;
+use Estoque\UnidadeMedida;
+use Estoque\Produto;
 use Illuminate\Http\Request;
-use App\Http\Requests\ProdutosRequest;
+use Estoque\Http\Requests\ProdutosRequest;
 
 class ProdutosController extends Controller {
     public function index() {

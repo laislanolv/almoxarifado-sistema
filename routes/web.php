@@ -12,9 +12,7 @@
 */
 
 // Welcome
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
 
 // Marcas
 Route::resource('marcas', 'MarcasController');

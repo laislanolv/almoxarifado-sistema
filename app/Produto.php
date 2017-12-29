@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace Estoque;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -22,14 +22,14 @@ class Produto extends Model {
     ];
 
     public function marca() {
-        return $this->belongsTo('App\Marca', 'id_marca');
+        return $this->belongsTo('Estoque\Marca', 'id_marca');
     }
 
     public function categoria() {
-        return $this->belongsTo('App\Categoria', 'id_categoria');
+        return $this->belongsTo('Estoque\Categoria', 'id_categoria');
     }
 
     public function unidade() {
-        return $this->belongsTo('App\UnidadeMedida', 'id_unidade_medida');
+        return $this->belongsTo('Estoque\UnidadeMedida', 'id_unidade_medida');
     }
 }

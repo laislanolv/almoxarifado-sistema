@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Estoque\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

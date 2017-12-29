@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Estoque\Http\Controllers;
 
-use App\Marca;
+use Estoque\Marca;
 use Illuminate\Http\Request;
-use App\Http\Requests\MarcasRequest;
+use Estoque\Http\Requests\MarcasRequest;
 
 class MarcasController extends Controller {
     public function index() {

@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Estoque\Http\Controllers;
 
-use App\UnidadeMedida;
+use Estoque\UnidadeMedida;
 use Illuminate\Http\Request;
-use App\Http\Requests\UnidadeMedidasRequest;
+use Estoque\Http\Requests\UnidadeMedidasRequest;
 
 class UnidadeMedidasController extends Controller {
     public function index() {

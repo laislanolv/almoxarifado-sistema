@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Estoque\Http\Controllers;
 
-use App\Estado;
+use Estoque\Estado;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 

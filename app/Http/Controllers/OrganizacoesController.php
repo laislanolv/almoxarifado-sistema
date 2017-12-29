@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Estoque\Http\Controllers;
 
-use App\Estado;
-use App\Organizacao;
+use Estoque\Estado;
+use Estoque\Organizacao;
 use Illuminate\Http\Request;
-use App\Http\Requests\OrganizacoesRequest;
+use Estoque\Http\Requests\OrganizacoesRequest;
 
 class OrganizacoesController extends Controller {
     public function index() {

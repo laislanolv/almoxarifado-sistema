@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Estoque\Http\Controllers;
 
-use App\Categoria;
+use Estoque\Categoria;
 use Illuminate\Http\Request;
-use App\Http\Requests\CategoriasRequest;
+use Estoque\Http\Requests\CategoriasRequest;
 
 class CategoriasController extends Controller {
     public function index() {
