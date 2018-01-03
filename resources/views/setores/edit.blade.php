@@ -1,14 +1,14 @@
 @extends('layouts.default')
-@section('title', 'Departamentos - Editar')
+@section('title', 'Setores - Editar')
 
 @section('content')
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Editar Departamento</h2>
+                <h2>Editar Setor</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="{{ route('departamentos.index') }}">Voltar</a>
+                <a class="btn btn-primary" href="{{ route('setores.index') }}">Voltar</a>
             </div>
         </div>
     </div>
@@ -24,7 +24,7 @@
     </div>
     @endif
 
-    {!! Form::open(array('id' => 'form_departamentos', 'method' => 'patch', 'route' => ['departamentos.update', $departamento->id])) !!}
-        @include('departamentos.form')
+    {!! Form::open(array('id' => 'form_setores', 'method' => 'patch', 'route' => ['setores.update', $setor->id])) !!}
+        @include('setores.form')
     {!! Form::close() !!}
 @endsection

@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Editar Marca</h2>
+                <h2>Editar Tipo</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('tipos-usuarios.index') }}">Voltar</a>

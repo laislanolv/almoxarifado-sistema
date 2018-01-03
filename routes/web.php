@@ -25,6 +25,11 @@ Route::resource('usuarios', 'UsuariosController');
 // Departamentos
 Route::resource('departamentos', 'DepartamentosController');
 
+// Setores
+Route::resource('setores', 'SetoresController', ['parameters' => [
+    'setores' => 'setor'
+]]);
+
 // Marcas
 Route::resource('marcas', 'MarcasController');
 

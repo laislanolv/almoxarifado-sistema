@@ -82,6 +82,7 @@
                 <div class="links">
                     <a href="{{ route('usuarios.index') }}">Usuários</a>
                     <a href="{{ route('departamentos.index') }}">Departamentos</a>
+                    <a href="{{ route('setores.index') }}">Setores</a>
                     <a href="{{ route('marcas.index') }}">Marcas</a>
                     <a href="{{ route('unidades.index') }}">Unidades</a>
                     <a href="{{ route('categorias.index') }}">Categorias</a>
