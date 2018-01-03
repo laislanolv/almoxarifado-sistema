@@ -49,10 +49,6 @@
                 font-size: 84px;
             }
 
-            .title-moderar {
-                font-size: 34px;
-            }
-
             .links > a {
                 color: #636b6f;
                 padding: 0 3px;
@@ -71,12 +67,12 @@
     <body>
         <div class="flex-center position-ref full-height">
             <div class="content">
-                <div class="title">
-                    Sistema de Estoque
+                <div class="m-b-md">
+                    <img src="img/logo.png" alt="Logo">    
                 </div>
 
-                <div class="title-moderar m-b-md">
-                    Moderar TI
+                <div class="title m-b-md">
+                    Sistema de Estoque
                 </div>
 
                 <div class="links">
