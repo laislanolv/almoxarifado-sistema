@@ -26,7 +26,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>E-mail:</strong>
-            {!! Form::text('email', isset($usuario) ? $usuario->email : null, ['placeholder' => 'E-mail', 'class' => 'form-control']) !!}
+            {!! Form::email('email', isset($usuario) ? $usuario->email : null, ['placeholder' => 'E-mail', 'class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">

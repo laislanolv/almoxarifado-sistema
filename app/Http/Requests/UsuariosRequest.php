@@ -19,14 +19,14 @@ class UsuariosRequest extends FormRequest {
         ];
 
         if ($this->method() == 'POST') {
-            $rules['email'] = 'required|email|max:200|unique:usuarios,email';
+            $rules['email'] = 'required|email|max:100|unique:usuarios,email';
             $rules['senha'] = 'required|min:6|max:255|confirmed';
             $rules['senha_confirmation'] = 'required|min:6|max:255';
         } else {
             $rules['email'] = [
                 'required',
                 'email',
-                'max:200',
+                'max:100',
                 Rule::unique('usuarios')->ignore($this->usuario->id)
             ];
             $rules['senha'] = 'nullable|min:6|max:255|confirmed';

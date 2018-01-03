@@ -42,5 +42,10 @@ Route::resource('organizacoes', 'OrganizacoesController', ['parameters' => [
     'organizacoes' => 'organizacao'
 ]]);
 
+// Fornecedores
+Route::resource('fornecedores', 'FornecedoresController', ['parameters' => [
+    'fornecedores' => 'fornecedor'
+]]);
+
 // Cidades
 Route::get('cidades/{estado}', 'CidadesController@getCidades');

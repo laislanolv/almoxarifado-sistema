@@ -32,19 +32,19 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Altura:</strong>
-            {!! Form::text('altura', isset($produto) ? $produto->altura : null, ['placeholder' => 'Altura', 'class' => 'form-control']) !!}
+            {!! Form::number('altura', isset($produto) ? $produto->altura : null, ['placeholder' => 'Altura', 'class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Largura:</strong>
-            {!! Form::text('largura', isset($produto) ? $produto->largura : null, ['placeholder' => 'Largura', 'class' => 'form-control']) !!}
+            {!! Form::number('largura', isset($produto) ? $produto->largura : null, ['placeholder' => 'Largura', 'class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Peso:</strong>
-            {!! Form::text('peso', isset($produto) ? $produto->peso : null, ['placeholder' => 'Peso', 'class' => 'form-control']) !!}
+            {!! Form::number('peso', isset($produto) ? $produto->peso : null, ['placeholder' => 'Peso', 'class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
