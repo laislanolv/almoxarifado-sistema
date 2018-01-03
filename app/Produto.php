@@ -10,6 +10,7 @@ class Produto extends Model {
     public $timestamps = false;
 
     protected $fillable = [
+        'id_fornecedor',
         'id_marca',
         'id_categoria',
         'id_unidade_medida',
@@ -20,6 +21,10 @@ class Produto extends Model {
         'peso',
         'status'
     ];
+
+    public function fornecedor() {
+        return $this->belongsTo('Estoque\Fornecedor', 'id_fornecedor');
+    }
 
     public function marca() {
         return $this->belongsTo('Estoque\Marca', 'id_marca');

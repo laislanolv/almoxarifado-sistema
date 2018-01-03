@@ -1,6 +1,12 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
+            <strong>Fornecedor:</strong>
+            {!! Form::select('id_fornecedor', $fornecedores, isset($produto) ? $produto->id_fornecedor : null, ['placeholder' => 'Selecione o Fornecedor', 'class' => 'form-control']) !!}
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
             <strong>Marca:</strong>
             {!! Form::select('id_marca', $marcas, isset($produto) ? $produto->id_marca : null, ['placeholder' => 'Selecione a Marca', 'class' => 'form-control']) !!}
         </div>

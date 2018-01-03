@@ -2,6 +2,7 @@
 
 namespace Estoque\Http\Controllers;
 
+use Estoque\Fornecedor;
 use Estoque\Marca;
 use Estoque\Categoria;
 use Estoque\UnidadeMedida;
@@ -16,10 +17,11 @@ class ProdutosController extends Controller {
     }
 
     public function create() {
+        $fornecedores = Fornecedor::pluck('nome_fantasia', 'id');
         $marcas = Marca::pluck('nome', 'id');
         $categorias = Categoria::pluck('nome', 'id');
         $unidades = UnidadeMedida::pluck('nome', 'id');
-        return view('produtos.create', compact('marcas', 'categorias', 'unidades'));
+        return view('produtos.create', compact('fornecedores', 'marcas', 'categorias', 'unidades'));
     }
 
     public function store(ProdutosRequest $request) {
@@ -32,10 +34,11 @@ class ProdutosController extends Controller {
     }
 
     public function edit(Produto $produto) {
+        $fornecedores = Fornecedor::pluck('nome_fantasia', 'id');
         $marcas = Marca::pluck('nome', 'id');
         $categorias = Categoria::pluck('nome', 'id');
         $unidades = UnidadeMedida::pluck('nome', 'id');
-        return view('produtos.edit', compact('marcas', 'categorias', 'unidades', 'produto'));
+        return view('produtos.edit', compact('fornecedores', 'marcas', 'categorias', 'unidades', 'produto'));
     }
 
     public function update(ProdutosRequest $request, Produto $produto) {

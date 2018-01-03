@@ -11,6 +11,7 @@ class ProdutosRequest extends FormRequest {
 
     public function rules() {
         return [
+            'id_fornecedor' => 'required|integer',
             'id_marca' => 'required|integer',
             'id_categoria' => 'required|integer',
             'id_unidade_medida' => 'required|integer',
@@ -23,6 +24,7 @@ class ProdutosRequest extends FormRequest {
 
     public function messages() {
         return [
+            'id_fornecedor.required' => 'O campo fornecedor é obrigatório.',
             'id_marca.required' => 'O campo marca é obrigatório.',
             'id_categoria.required' => 'O campo categoria é obrigatório.',
             'id_unidade_medida.required' => 'O campo unidade de medida é obrigatório.'
