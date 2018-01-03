@@ -19,6 +19,9 @@ Route::resource('tipos-usuarios', 'UsuariosTiposController', ['parameters' => [
     'tipos-usuarios' => 'tipo'
 ]]);
 
+// Usuários
+Route::resource('usuarios', 'UsuariosController');
+
 // Departamentos
 Route::resource('departamentos', 'DepartamentosController');
 

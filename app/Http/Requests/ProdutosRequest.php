@@ -11,10 +11,13 @@ class ProdutosRequest extends FormRequest {
 
     public function rules() {
         return [
-            'id_marca' => 'required',
-            'id_categoria' => 'required',
-            'id_unidade_medida' => 'required',
-            'nome' => 'required|max:200'
+            'id_marca' => 'required|integer',
+            'id_categoria' => 'required|integer',
+            'id_unidade_medida' => 'required|integer',
+            'nome' => 'required|string|max:200',
+            'altura' => 'nullable|numeric|between:0,99.99',
+            'largura' => 'nullable|numeric|between:0,99.99',
+            'peso' => 'nullable|numeric|between:0,99.99'
         ];
     }
 

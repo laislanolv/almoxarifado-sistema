@@ -11,8 +11,8 @@ class OrganizacoesRequest extends FormRequest {
 
     public function rules() {
         return [
-            'id_cidade' => 'required',
-            'nome' => 'required|max:200'
+            'id_cidade' => 'required|integer',
+            'nome' => 'required|string|max:200'
         ];
     }
 

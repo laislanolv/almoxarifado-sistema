@@ -11,7 +11,7 @@ class MarcasRequest extends FormRequest {
 
     public function rules() {
         return [
-            'nome' => 'required|max:200'
+            'nome' => 'required|string|max:200'
         ];
     }
 }
