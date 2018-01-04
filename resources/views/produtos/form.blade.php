@@ -1,12 +1,6 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Fornecedor:</strong>
-            {!! Form::select('id_fornecedor', $fornecedores, isset($produto) ? $produto->id_fornecedor : null, ['placeholder' => 'Selecione o Fornecedor', 'class' => 'form-control']) !!}
-        </div>
-    </div>
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="form-group">
             <strong>Marca:</strong>
             {!! Form::select('id_marca', $marcas, isset($produto) ? $produto->id_marca : null, ['placeholder' => 'Selecione a Marca', 'class' => 'form-control']) !!}
         </div>
@@ -38,19 +32,19 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Altura:</strong>
-            {!! Form::number('altura', isset($produto) ? $produto->altura : null, ['placeholder' => 'Altura', 'class' => 'form-control']) !!}
+            {!! Form::text('altura', isset($produto) ? $produto->altura : null, ['placeholder' => 'Altura', 'class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Largura:</strong>
-            {!! Form::number('largura', isset($produto) ? $produto->largura : null, ['placeholder' => 'Largura', 'class' => 'form-control']) !!}
+            {!! Form::text('largura', isset($produto) ? $produto->largura : null, ['placeholder' => 'Largura', 'class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Peso:</strong>
-            {!! Form::number('peso', isset($produto) ? $produto->peso : null, ['placeholder' => 'Peso', 'class' => 'form-control']) !!}
+            {!! Form::text('peso', isset($produto) ? $produto->peso : null, ['placeholder' => 'Peso', 'class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12 text-center">
