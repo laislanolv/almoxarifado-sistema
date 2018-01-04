@@ -6,11 +6,12 @@
         <title>Estoque - @yield('title')</title>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet">
         <link href="{{ asset('/css/select2-bootstrap-theme/select2-bootstrap.min.css') }}" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/i18n/pt-BR.js"></script>
     </head>
     <body>
         <header>
@@ -33,12 +34,13 @@
         </header>
 
         <main class="container" style="margin-bottom: 20px;">
-          @yield('content')
+            @yield('content')
         </main>
 
         <script>
             $(document).ready(function() {
                 $.fn.select2.defaults.set( "theme", "bootstrap" );
+                $.fn.select2.defaults.set('language', 'pt-BR');
                 $('select').select2();
             });
         </script>
