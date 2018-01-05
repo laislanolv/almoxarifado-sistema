@@ -5,6 +5,8 @@ namespace Estoque\Http\Controllers;
 use Estoque\UsuarioTipo;
 use Estoque\Organizacao;
 use Estoque\Departamento;
+use Estoque\UsuarioDepartamento;
+
 use Estoque\Usuario;
 use Illuminate\Http\Request;
 use Estoque\Http\Requests\UsuariosRequest;
@@ -25,7 +27,8 @@ class UsuariosController extends Controller {
     public function store(UsuariosRequest $request) {
         $data = $request->all();
         $data['senha'] = Usuario::encryptSenha($request->senha);
-        Usuario::create($data);
+        $usuario = Usuario::create($data);
+        $this->storeDepartamentos($usuario, $data['departamentos']);
         return redirect()->route('usuarios.index')->with('success', 'Cadastrado com sucesso!');
     }
 
@@ -37,7 +40,8 @@ class UsuariosController extends Controller {
         $tipos = UsuarioTipo::pluck('nome', 'id');
         $organizacoes = Organizacao::pluck('nome', 'id');
         $departamentos = Departamento::pluck('nome', 'id');
-        return view('usuarios.edit', compact('tipos', 'organizacoes', 'departamentos', 'usuario'));
+        $departamentos_selecionados = UsuarioDepartamento::where('id_usuario', $usuario->id)->pluck('id_departamento');
+        return view('usuarios.edit', compact('tipos', 'organizacoes', 'departamentos', 'departamentos_selecionados', 'usuario'));
     }
 
     public function update(UsuariosRequest $request, Usuario $usuario) {
@@ -50,10 +54,23 @@ class UsuariosController extends Controller {
         }
 
         $usuario->update($data);
+        $this->storeDepartamentos($usuario, $data['departamentos']);
         return redirect()->route('usuarios.index')->with('success', 'Editado com sucesso!');
     }
 
+    public function storeDepartamentos($usuario, $departamentos) {
+        $data = [];
+
+        foreach($departamentos as $key => $val) {
+            $data[$key] = ['id_usuario' => $usuario->id, 'id_departamento' => $val];
+        }
+
+        UsuarioDepartamento::where('id_usuario', $usuario->id)->delete();
+        UsuarioDepartamento::insert($data);
+    }
+
     public function destroy($id) {
+        UsuarioDepartamento::where('id_usuario', $id)->delete();
         Usuario::destroy($id);
         return redirect()->route('usuarios.index')->with('success', 'Deletado com sucesso!');
     }

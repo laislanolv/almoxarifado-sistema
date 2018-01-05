@@ -3,6 +3,7 @@
 namespace Estoque\Http\Controllers;
 
 use Estoque\Estado;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 

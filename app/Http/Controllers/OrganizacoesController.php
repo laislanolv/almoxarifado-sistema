@@ -3,6 +3,7 @@
 namespace Estoque\Http\Controllers;
 
 use Estoque\Estado;
+
 use Estoque\Organizacao;
 use Illuminate\Http\Request;
 use Estoque\Http\Requests\OrganizacoesRequest;

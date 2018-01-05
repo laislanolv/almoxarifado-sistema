@@ -13,4 +13,8 @@ class Departamento extends Model {
         'nome',
         'status'
     ];
+    
+    public function usuarios() {
+        return $this->belongsToMany('Estoque\Usuario', 'usuarios_departamentos', 'id_departamento', 'id_usuario');
+    }
 }

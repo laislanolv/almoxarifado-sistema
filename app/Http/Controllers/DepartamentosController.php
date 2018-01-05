@@ -3,6 +3,7 @@
 namespace Estoque\Http\Controllers;
 
 use Estoque\Departamento;
+
 use Illuminate\Http\Request;
 use Estoque\Http\Requests\DepartamentosRequest;
 

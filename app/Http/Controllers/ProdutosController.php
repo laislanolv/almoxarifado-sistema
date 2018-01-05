@@ -5,6 +5,7 @@ namespace Estoque\Http\Controllers;
 use Estoque\Marca;
 use Estoque\Categoria;
 use Estoque\UnidadeMedida;
+
 use Estoque\Produto;
 use Illuminate\Http\Request;
 use Estoque\Http\Requests\ProdutosRequest;

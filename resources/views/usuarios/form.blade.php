@@ -13,8 +13,8 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Departamento:</strong>
-            {!! Form::select('id_departamento', $departamentos, isset($usuario) ? $usuario->id_departamento : null, ['placeholder' => 'Selecione o Departamento', 'class' => 'form-control']) !!}
+            <strong>Departamentos:</strong>
+            {!! Form::select('departamentos[]', $departamentos, null, ['id' => 'departamentos', 'multiple' => 'multiple', 'data-placeholder' => 'Selecione os Departamentos', 'class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -47,6 +47,13 @@
 </div>
 
 @section('scripts')
+@if (isset($departamentos_selecionados))
+    <script>
+        $(document).ready(function() {
+            $("#departamentos").val(<?php echo $departamentos_selecionados; ?>).trigger('change');
+        });
+    </script>
+@endif
 <script>
     $('#form_usuarios').submit(function() {
         $(this).find('input[type=submit]').prop('disabled', true).attr('value', 'Aguarde...');

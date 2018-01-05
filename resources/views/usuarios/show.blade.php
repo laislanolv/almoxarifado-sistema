@@ -33,8 +33,10 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Departamento:</strong>
-            {{ $usuario->departamento->nome }}
+            <strong>Departamentos:</strong>
+            @foreach ($usuario->departamentos as $departamento)
+                <p>{{ $departamento->nome }}</p>
+            @endforeach
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">

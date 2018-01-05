@@ -2,7 +2,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Departamento:</strong>
-            {!! Form::select('id_departamento', $departamentos, isset($setor) ? $setor->id_departamento : null, ['placeholder' => 'Selecione o Fornecedor', 'class' => 'form-control']) !!}
+            {!! Form::select('id_departamento', $departamentos, isset($setor) ? $setor->id_departamento : null, ['placeholder' => 'Selecione o Departamento', 'class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">

@@ -14,7 +14,7 @@ class UsuariosRequest extends FormRequest {
         $rules = [
             'id_tipo' => 'required|integer',
             'id_organizacao' => 'required|integer',
-            'id_departamento' => 'required|integer',
+            'departamentos' => 'required',
             'nome' => 'required|string|max:200'
         ];
 
@@ -40,7 +40,7 @@ class UsuariosRequest extends FormRequest {
         return [
             'id_tipo.required' => 'O campo tipo é obrigatório.',
             'id_organizacao.required' => 'O campo organização é obrigatório.',
-            'id_departamento.required' => 'O campo departamento de medida é obrigatório.',
+            'departamentos.required' => 'O campo departamento é obrigatório.',
             'senha.confirmed' => 'O campo confirmar senha não confere.',
             'senha_confirmation.required' => 'O campo confirmar senha é obrigatório.',
             'senha_confirmation.min' => 'O campo confirmar senha deve ter pelo menos 6 caracteres.',

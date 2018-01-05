@@ -12,7 +12,6 @@ class Usuario extends Model {
     protected $fillable = [
         'id_tipo',
         'id_organizacao',
-        'id_departamento',
         'nome',
         'email',
         'senha',
@@ -31,7 +30,7 @@ class Usuario extends Model {
         return $this->belongsTo('Estoque\Organizacao', 'id_organizacao');
     }
 
-    public function departamento() {
-        return $this->belongsTo('Estoque\Departamento', 'id_departamento');
+    public function departamentos() {
+        return $this->belongsToMany('Estoque\Departamento', 'usuarios_departamentos', 'id_usuario', 'id_departamento');
     }
 }

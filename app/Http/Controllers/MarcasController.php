@@ -3,6 +3,7 @@
 namespace Estoque\Http\Controllers;
 
 use Estoque\Marca;
+
 use Illuminate\Http\Request;
 use Estoque\Http\Requests\MarcasRequest;
 

@@ -3,6 +3,7 @@
 namespace Estoque\Http\Controllers;
 
 use Estoque\Estado;
+
 use Estoque\Fornecedor;
 use Illuminate\Http\Request;
 use Estoque\Http\Requests\FornecedoresRequest;
