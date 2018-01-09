@@ -22,6 +22,11 @@ Route::resource('tipos-usuarios', 'UsuariosTiposController', ['parameters' => [
 // Usuários
 Route::resource('usuarios', 'UsuariosController');
 
+// Tipos de Usuários
+Route::resource('fontes-recursos', 'FontesRecursosController', ['parameters' => [
+    'fontes-recursos' => 'fonte'
+]]);
+
 // Departamentos
 Route::resource('departamentos', 'DepartamentosController');
 
@@ -40,7 +45,11 @@ Route::resource('unidades', 'UnidadeMedidasController');
 Route::resource('categorias', 'CategoriasController');
 
 // Produtos
+Route::get('produtos/find', 'ProdutosController@find');
 Route::resource('produtos', 'ProdutosController');
+
+// Entradas
+Route::resource('entradas', 'EntradasController');
 
 // Organizações
 Route::resource('organizacoes', 'OrganizacoesController', ['parameters' => [
