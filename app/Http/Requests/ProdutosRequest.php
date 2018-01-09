@@ -13,11 +13,14 @@ class ProdutosRequest extends FormRequest {
         return [
             'id_marca' => 'required|integer',
             'id_categoria' => 'required|integer',
-            'id_unidade_medida' => 'required|integer',
+            'id_unidade_entrada' => 'required|integer',
+            'id_unidade_saida' => 'required|integer',
+            'proporcao' => 'nullable|integer',
             'nome' => 'required|string|max:200',
-            'altura' => 'nullable|numeric|between:0,9999.99',
-            'largura' => 'nullable|numeric|between:0,9999.99',
-            'peso' => 'nullable|numeric|between:0,9999.99'
+            'descricao' => 'nullable|string',
+            'altura' => 'nullable|numeric',
+            'largura' => 'nullable|numeric',
+            'peso' => 'nullable|numeric'
         ];
     }
 
@@ -25,7 +28,8 @@ class ProdutosRequest extends FormRequest {
         return [
             'id_marca.required' => 'O campo marca é obrigatório.',
             'id_categoria.required' => 'O campo categoria é obrigatório.',
-            'id_unidade_medida.required' => 'O campo unidade de medida é obrigatório.'
+            'id_unidade_entrada.required' => 'O campo unidade de medida de entrada é obrigatório.',
+            'id_unidade_saida.required' => 'O campo unidade de medida de saída é obrigatório.'
         ];
     }
 }

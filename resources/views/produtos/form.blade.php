@@ -13,8 +13,20 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Unidade de Medida:</strong>
-            {!! Form::select('id_unidade_medida', $unidades, isset($produto) ? $produto->id_unidade_medida : null, ['placeholder' => 'Selecione a Unidade', 'class' => 'form-control']) !!}
+            <strong>Unidade Entrada:</strong>
+            {!! Form::select('id_unidade_entrada', $unidades, isset($produto) ? $produto->id_unidade_entrada : null, ['placeholder' => 'Selecione a Unidade', 'class' => 'form-control']) !!}
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Unidade Saída:</strong>
+            {!! Form::select('id_unidade_saida', $unidades, isset($produto) ? $produto->id_unidade_saida : null, ['placeholder' => 'Selecione a Unidade', 'class' => 'form-control']) !!}
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Proporção:</strong>
+            {!! Form::number('proporcao', isset($produto) ? $produto->proporcao : null, ['placeholder' => 'Proporção', 'class' => 'form-control']) !!}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -43,7 +55,7 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Peso:</strong>
+            <strong>Peso em gramas:</strong>
             {!! Form::text('peso', isset($produto) ? $produto->peso : null, ['placeholder' => 'Peso', 'class' => 'form-control']) !!}
         </div>
     </div>

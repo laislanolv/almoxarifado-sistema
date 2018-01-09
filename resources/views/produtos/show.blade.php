@@ -33,8 +33,14 @@
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Unidade de Medida:</strong>
-            {{ $produto->unidade->nome }}
+            <strong>Unidade de Entrada:</strong>
+            {{ $produto->unidadeEntrada->nome }}
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Unidade de Saída:</strong>
+            {{ $produto->unidadeSaida->nome }}
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12">

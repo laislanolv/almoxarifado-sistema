@@ -48,4 +48,15 @@ class ProdutosController extends Controller {
         Produto::destroy($id);
         return redirect()->route('produtos.index')->with('success', 'Deletado com sucesso!');
     }
+
+    public function find(Request $request) {
+        $termo = $request->produto;
+
+        if (empty($termo)) {
+            return response()->json([]);
+        }
+
+        $produtos = Produto::orderBy('nome', 'asc')->where('nome', 'like', "%$termo%")->limit(10)->get();
+        return response()->json($produtos);
+    }
 }

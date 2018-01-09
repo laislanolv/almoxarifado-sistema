@@ -12,7 +12,9 @@ class Produto extends Model {
     protected $fillable = [
         'id_marca',
         'id_categoria',
-        'id_unidade_medida',
+        'id_unidade_entrada',
+        'id_unidade_saida',
+        'proporcao',
         'nome',
         'descricao',
         'altura',
@@ -29,7 +31,11 @@ class Produto extends Model {
         return $this->belongsTo('Estoque\Categoria', 'id_categoria');
     }
 
-    public function unidade() {
-        return $this->belongsTo('Estoque\UnidadeMedida', 'id_unidade_medida');
+    public function unidadeEntrada() {
+        return $this->belongsTo('Estoque\UnidadeMedida', 'id_unidade_entrada');
+    }
+
+    public function unidadeSaida() {
+        return $this->belongsTo('Estoque\UnidadeMedida', 'id_unidade_saida');
     }
 }
