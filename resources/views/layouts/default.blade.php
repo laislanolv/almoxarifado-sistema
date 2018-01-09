@@ -7,11 +7,16 @@
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet">
-        <link href="{{ asset('/css/select2-bootstrap-theme/select2-bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('/libs/select2-bootstrap-theme/dist/select2-bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('/libs/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('/libs/stepwizard/css/stepwizard.css') }}" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/i18n/pt-BR.js"></script>
+        <script src="{{ asset('/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+        <script src="{{ asset('/libs/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js') }}"></script>
+        <script src="{{ asset('/libs/stepwizard/js/stepwizard.js') }}"></script>
     </head>
     <body>
         <header>
@@ -20,12 +25,14 @@
                     <section class="navbar-header">
                         <a href="/" class="navbar-brand">Início</a>
                         <a href="{{ route('usuarios.index') }}" class="navbar-brand">Usuários</a>
+                        <a href="{{ route('fontes-recursos.index') }}" class="navbar-brand">Fontes de Recursos</a>
                         <a href="{{ route('departamentos.index') }}" class="navbar-brand">Departamentos</a>
                         <a href="{{ route('setores.index') }}" class="navbar-brand">Setores</a>
                         <a href="{{ route('marcas.index') }}" class="navbar-brand">Marcas</a>
                         <a href="{{ route('unidades.index') }}" class="navbar-brand">Unidades</a>
                         <a href="{{ route('categorias.index') }}" class="navbar-brand">Categorias</a>
                         <a href="{{ route('produtos.index') }}" class="navbar-brand">Produtos</a>
+                        <a href="{{ route('entradas.index') }}" class="navbar-brand">Entradas</a>
                         <a href="{{ route('fornecedores.index') }}" class="navbar-brand">Fornecedores</a>
                         <a href="{{ route('organizacoes.index') }}" class="navbar-brand">Organizações</a>
                     </section>
@@ -42,6 +49,13 @@
                 $.fn.select2.defaults.set( "theme", "bootstrap" );
                 $.fn.select2.defaults.set('language', 'pt-BR');
                 $('select').select2();
+
+                $('input.datas').datepicker({
+                    format: "dd/mm/yyyy",
+                    language: "pt-BR",
+                    autoclose: true,
+                    todayHighlight: true
+                });
             });
         </script>
 

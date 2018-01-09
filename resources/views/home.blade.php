@@ -77,12 +77,14 @@
 
                 <div class="links">
                     <a href="{{ route('usuarios.index') }}">Usuários</a>
+                    <a href="{{ route('fontes-recursos.index') }}">Fontes de Recursos</a>
                     <a href="{{ route('departamentos.index') }}">Departamentos</a>
                     <a href="{{ route('setores.index') }}">Setores</a>
                     <a href="{{ route('marcas.index') }}">Marcas</a>
                     <a href="{{ route('unidades.index') }}">Unidades</a>
                     <a href="{{ route('categorias.index') }}">Categorias</a>
                     <a href="{{ route('produtos.index') }}">Produtos</a>
+                    <a href="{{ route('entradas.index') }}">Entradas</a>
                     <a href="{{ route('fornecedores.index') }}">Fornecedores</a>
                     <a href="{{ route('organizacoes.index') }}">Organizações</a>
                 </div>
