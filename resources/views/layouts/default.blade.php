@@ -17,6 +17,7 @@
         <script src="{{ asset('/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
         <script src="{{ asset('/libs/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js') }}"></script>
         <script src="{{ asset('/libs/stepwizard/js/stepwizard.js') }}"></script>
+        <script src="{{ asset('/libs/jquery-maskmoney/dist/jquery.maskMoney.min.js') }}"></script>
     </head>
     <body>
         <header>
@@ -46,16 +47,24 @@
 
         <script>
             $(document).ready(function() {
-                $.fn.select2.defaults.set( "theme", "bootstrap" );
+                $.fn.select2.defaults.set('theme', 'bootstrap');
                 $.fn.select2.defaults.set('language', 'pt-BR');
                 $('select').select2();
 
-                $('input.datas').datepicker({
+                $('input.data').datepicker({
                     format: "dd/mm/yyyy",
                     language: "pt-BR",
                     autoclose: true,
                     todayHighlight: true
                 });
+
+                $('input.real').maskMoney({
+                    prefix: 'R$ ',
+                    thousands: '.',
+                    decimal: ',',
+                    precision: 4,
+                    selectAllOnFocus: true,
+                }).trigger('mask.maskMoney');
             });
         </script>
 

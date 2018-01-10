@@ -2,6 +2,12 @@
 @section('title', 'Entradas - Editar')
 
 @section('content')
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+            {{ session('success') }}
+        </div>
+    @endif
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">

@@ -32,6 +32,17 @@ class UsuariosController extends Controller {
         return redirect()->route('usuarios.index')->with('success', 'Cadastrado com sucesso!');
     }
 
+    public function storeDepartamentos($usuario, $departamentos) {
+        $data = [];
+
+        foreach($departamentos as $key => $val) {
+            $data[$key] = ['id_usuario' => $usuario->id, 'id_departamento' => $val];
+        }
+
+        UsuarioDepartamento::where('id_usuario', $usuario->id)->delete();
+        UsuarioDepartamento::insert($data);
+    }
+
     public function show(Usuario $usuario) {
         return view('usuarios.show', compact('usuario'));
     }
@@ -56,17 +67,6 @@ class UsuariosController extends Controller {
         $usuario->update($data);
         $this->storeDepartamentos($usuario, $data['departamentos']);
         return redirect()->route('usuarios.index')->with('success', 'Editado com sucesso!');
-    }
-
-    public function storeDepartamentos($usuario, $departamentos) {
-        $data = [];
-
-        foreach($departamentos as $key => $val) {
-            $data[$key] = ['id_usuario' => $usuario->id, 'id_departamento' => $val];
-        }
-
-        UsuarioDepartamento::where('id_usuario', $usuario->id)->delete();
-        UsuarioDepartamento::insert($data);
     }
 
     public function destroy($id) {

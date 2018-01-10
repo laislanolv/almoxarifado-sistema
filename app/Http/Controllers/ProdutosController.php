@@ -56,7 +56,7 @@ class ProdutosController extends Controller {
             return response()->json([]);
         }
 
-        $produtos = Produto::orderBy('nome', 'asc')->where('nome', 'like', "%$termo%")->limit(10)->get();
+        $produtos = Produto::with('unidadeEntrada')->orderBy('nome', 'asc')->where('nome', 'like', "%$termo%")->limit(10)->get();
         return response()->json($produtos);
     }
 }

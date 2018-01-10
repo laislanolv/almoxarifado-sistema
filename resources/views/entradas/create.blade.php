@@ -24,7 +24,6 @@
     </div>
     @endif
 
-    {!! Form::open(array('id' => 'form_entradas', 'method' => 'post', 'route' => 'entradas.store')) !!}
-        @include('entradas.form')
-    {!! Form::close() !!}
+    @include('entradas.form')
+    
 @endsection

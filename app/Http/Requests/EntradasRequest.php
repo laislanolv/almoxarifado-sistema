@@ -17,7 +17,7 @@ class EntradasRequest extends FormRequest {
             'id_fonte_recurso' => 'required|integer',
             'data' => 'required|string',
             'numero_nota' => 'required|string|max:200',
-            'valor_nota' => 'required|numeric|between:0,9999999.9999',
+            'valor_nota' => 'required|regex:/^\d*(\.\d{1,4})?$/',
             'quantidade_itens_nota' => 'required|integer',
             'anexo_nota' => 'nullable|string',
             'observacoes' => 'nullable|string'

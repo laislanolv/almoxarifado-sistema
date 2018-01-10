@@ -14,7 +14,8 @@
         <table class="table table-striped table-hover">
             <thead>
                 <th>ID</th>
-                <th>Data</th>
+                <th>Número da Nota</th>
+                <th>Data da Nota</th>
                 <th>Observações</th>
                 <th>Status</th>
                 <th style="width: 20%;">Ações</th>
@@ -22,12 +23,13 @@
             <tbody>
                 @if($entradas->total() == 0)
                     <tr>
-                        <th class="text-center" colspan="5">Nenhuma Entrada encontrada</th>
+                        <th class="text-center" colspan="6">Nenhuma Entrada encontrada</th>
                     </tr>
                 @else
                     @foreach ($entradas as $entrada)
                         <tr>
                             <td>{{ $entrada->id }}</td>
+                            <td>{{ $entrada->numero_nota }}</td>
                             <td>{{ \Carbon\Carbon::parse($entrada->data)->format('d/m/Y') }}</td>
                             <td>
                                 @if ($entrada->observacoes != null)

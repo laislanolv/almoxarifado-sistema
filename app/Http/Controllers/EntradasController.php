@@ -27,8 +27,18 @@ class EntradasController extends Controller {
     }
 
     public function store(EntradasRequest $request) {
-        Entrada::create($request->except(['usuario_nome']));
-        return redirect()->route('entradas.index')->with('success', 'Cadastrado com sucesso!');
+        if ($request->step == '1') {
+            $cabecalho = $this->storeCabecalho($request);
+            return redirect()->route('entradas.edit', $cabecalho->id)->with('success', 'Nota cadastrada! Cadastre os itens da nota.');
+        } elseif ($request->step == '2') {
+            return redirect()->route('entradas.index')->with('success', 'Cadastrado com sucesso!');
+        }
+    }
+
+    public function storeCabecalho($request) {
+        $data = $request->all();
+        $data['data'] = Entrada::formatarData($request->data);
+        return Entrada::create($data);
     }
 
     public function show(Entrada $entrada) {

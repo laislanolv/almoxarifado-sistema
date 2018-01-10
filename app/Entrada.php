@@ -2,6 +2,8 @@
 
 namespace Estoque;
 
+use Carbon\Carbon;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Entrada extends Model {
@@ -23,4 +25,8 @@ class Entrada extends Model {
         'finalizada',
         'status'
     ];
+
+    public static function formatarData($data) {
+        return Carbon::createFromFormat('d/m/Y', $data)->toDateString();
+    }
 }
