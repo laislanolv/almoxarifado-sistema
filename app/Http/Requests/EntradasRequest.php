@@ -19,7 +19,7 @@ class EntradasRequest extends FormRequest {
             'numero_nota' => 'required|string|max:200',
             'valor_nota' => 'required|regex:/^\d*(\.\d{1,4})?$/',
             'quantidade_itens_nota' => 'required|integer',
-            'anexo_nota' => 'nullable|string',
+            'anexo_nota' => 'nullable|mimes:jpeg,jpg,png,docx,doc,pdf|max:10240',
             'observacoes' => 'nullable|string'
         ];
     }

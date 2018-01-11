@@ -11,7 +11,7 @@
             </div>
         </div>
     </div>
-    {!! Form::open(array('id' => 'form_entradas_step1', 'method' => 'post', 'route' => 'entradas.store')) !!}
+    {!! Form::open(array('id' => 'form_entradas_step1', 'method' => 'post', 'files' => true, 'route' => 'entradas.store')) !!}
         {!! Form::hidden('step', '1') !!}
         <div id="step1" class="row setup-content">
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -67,7 +67,11 @@
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Anexo da Nota:</strong>
-                    {!! Form::file('anexo_nota', ['placeholder' => 'Anexo da Nota', 'class' => 'form-control file']) !!}
+                    @if(!isset($entrada->anexo_nota))
+                        {!! Form::file('anexo_nota', ['placeholder' => 'Anexo da Nota', 'class' => 'form-control file']) !!}
+                    @else
+                        <br><a href='{{ asset("uploads/notas/$entrada->anexo_nota") }}' target="_blank"><i class="fa fa-file-text-o"></i> <b>Abir Nota Fiscal anexada</b></a> <b>/</b> <a href="#" class="text-danger">(deletar o anexo)</a>
+                    @endif
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-12">
@@ -82,31 +86,50 @@
         </div>
     {!! Form::close() !!}
 
-    {!! Form::open(array('id' => 'form_entradas_step2', 'method' => 'post', 'route' => 'entradas.store')) !!}
-        <div id="step2" class="row setup-content">
-            <div class="col-xs-12 col-sm-12 col-md-12">
+    <div id="step2" class="row setup-content">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-6 col-sm-6 col-md-6">
                 <div class="form-group">
                     <strong>Produto:</strong>
                     {!! Form::select('produtos', [], null, ['placeholder' => 'Selecione o Produto', 'id' => 'produtos', 'class' => 'form-control', 'style' => 'width: 100%;']) !!}
                 </div>
             </div>
-            <div class="col-xs-12 col-sm-12 col-md-12">
-                <table class="table table-striped table-hover">
-                    <thead>
-                        <th>Nome</th>
-                        <th style="width: 100px;">Quantidade</th>
-                        <th style="width: 125px;">Valor</th>
-                        <th style="width: 125px;">Total</th>
-                        <th style="width: 45px;"></th>
-                    </thead>
-                    <tbody></tbody>
-                </table>
+            <div class="col-xs-2 col-sm-2 col-md-2">
+                <div class="form-group">
+                    <strong>Quantidade:</strong>
+                    {!! Form::text('quantidade', null, ['id' => 'quantidade', 'maxlength' => '15', 'class' => 'form-control quantidade']) !!}
+                </div>
             </div>
+            <div class="col-xs-2 col-sm-2 col-md-2">
+                <div class="form-group">
+                    <strong>Valor:</strong>
+                    {!! Form::text('valor', null, ['id' => 'valor', 'maxlength' => '21', 'class' => 'form-control real']) !!}
+                </div>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 text-center">
+                <div class="form-group">
+                    {!! Form::button('Adicionar <i class="fa fa-check"></i>', ['id' => 'add_item', 'class' => 'btn btn-default', 'style' => 'margin-top: 20px;']) !!}
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12" style="margin-top: 20px;">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <th>Nome</th>
+                    <th style="width: 200px;">Quantidade</th>
+                    <th style="width: 200px;">Valor</th>
+                    <th style="width: 200px;">Total</th>
+                    <th style="width: 45px;"></th>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        {!! Form::open(array('id' => 'form_entradas_step2', 'method' => 'post', 'route' => 'entradas.store')) !!}
             <div class="col-xs-12 col-sm-12 col-md-12 text-center">
                 {!! Form::submit('Finalizar', ['class' => 'btn btn-primary']) !!}
             </div>
-        </div>
-    {!! Form::close() !!}
+        {!! Form::close() !!}
+    </div>
 </div>
 
 @section('scripts')
@@ -139,14 +162,34 @@
         });
     });
     
-    $('#produtos').change(function(e) {
-        var text = $('option:selected', this).text();
-        var nome = '<td>' + text + '</td>';
-        var quantidade = '<td><input type="number" name="produto_quantidade[]" class="form-control" style="width: 75px;"></td>';
-        var preco = '<td><input type="text" name="produto_preco[]" class="form-control" style="width: 100px;"></td>';
-        var total = '<td><input type="text" name="produto_total[]" class="form-control" style="width: 100px;" disabled="disabled"></td>';
-        var acoes = '<td><i class="fa fa-trash" onclick="deleteRow(this)" style="font-size: 20px; color: #d61a1a; margin-top: 7px; cursor: pointer;"></i></td>';
-        $('table tbody').append('<tr>' + nome + quantidade + preco + total + acoes +'</tr>');
+    $('#add_item').click(function() {
+        var self = $(this);
+
+        self.prop('disabled', true).text('Aguarde...');
+
+        var produtos = $('#produtos');
+
+        var produto_selecionado = $('#produtos option:selected');
+        var quantidade = $('#quantidade');
+        var valor = $('#valor');
+
+        var valor_total = quantidade.maskMoney('unmasked')[0] * valor.maskMoney('unmasked')[0];
+
+        var td_produto = '<td>' + produto_selecionado.text() + '</td>';
+        var td_quantidade = '<td>' + quantidade.val() + '</td>';
+        var td_valor = '<td>' + valor.val() + '</td>';
+        var td_total = '<td>' + valor_total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 4 }).replace("R$", "R$ ") + '</td>';
+        var td_acoes = '<td><i class="fa fa-trash text-danger" onclick="deleteRow(this)" style="font-size: 20px; cursor: pointer;"></i></td>';
+        
+        setTimeout(function() {
+            $('table tbody').append('<tr>' + td_produto + td_quantidade + td_valor + td_total + td_acoes +'</tr>');
+
+            produtos.val('').trigger('change');
+            quantidade.val('0,0000');
+            valor.val('0,0000');
+            
+            self.prop('disabled', false).html('Adicionar <i class="fa fa-check"></i>');
+        }, 3000);
     });
 
     function deleteRow(el) {

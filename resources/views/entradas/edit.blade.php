@@ -29,8 +29,7 @@
         </ul>
     </div>
     @endif
-
-    {!! Form::open(array('id' => 'form_entradas', 'method' => 'patch', 'route' => ['entradas.update', $entrada->id])) !!}
-        @include('entradas.form')
-    {!! Form::close() !!}
+    
+    @include('entradas.form')
+    
 @endsection

@@ -37,6 +37,12 @@ class EntradasController extends Controller {
 
     public function storeCabecalho($request) {
         $data = $request->all();
+        
+        if ($request->anexo_nota) {
+            $data['anexo_nota'] = md5(time().uniqid(rand(), true)) . '.' . $request->anexo_nota->getClientOriginalExtension();
+            $request->anexo_nota->move(public_path('uploads/notas'), $data['anexo_nota']);
+        }
+
         $data['data'] = Entrada::formatarData($request->data);
         return Entrada::create($data);
     }

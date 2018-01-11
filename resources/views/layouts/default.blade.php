@@ -65,6 +65,14 @@
                     precision: 4,
                     selectAllOnFocus: true,
                 }).trigger('mask.maskMoney');
+
+                $('input.quantidade').maskMoney({
+                    prefix: '',
+                    thousands: '',
+                    decimal: ',',
+                    precision: 4,
+                    selectAllOnFocus: true,
+                }).trigger('mask.maskMoney');
             });
         </script>
 
