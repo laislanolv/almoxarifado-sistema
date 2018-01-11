@@ -13,7 +13,7 @@
     </div>
     {!! Form::open(array('id' => 'form_entradas_step1', 'method' => 'post', 'files' => true, 'route' => 'entradas.store')) !!}
         {!! Form::hidden('step', '1') !!}
-        <div id="step1" class="row setup-content">
+        <div id="step1" class="row setup-content" style="margin-top: 20px;">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Usuário:</strong>
@@ -86,12 +86,24 @@
         </div>
     {!! Form::close() !!}
 
-    <div id="step2" class="row setup-content">
+    <div id="step2" class="row setup-content" style="margin-top: 20px;">
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="col-xs-6 col-sm-6 col-md-6">
+            <div class="col-xs-2 col-sm-2 col-md-2">
                 <div class="form-group">
                     <strong>Produto:</strong>
                     {!! Form::select('produtos', [], null, ['placeholder' => 'Selecione o Produto', 'id' => 'produtos', 'class' => 'form-control', 'style' => 'width: 100%;']) !!}
+                </div>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2">
+                <div class="form-group">
+                    <strong>Número do Lote:</strong>
+                    {!! Form::text('numero_lote', null, ['id' => 'numero_lote', 'class' => 'form-control']) !!}
+                </div>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2">
+                <div class="form-group">
+                    <strong>Vencimento do Lote:</strong>
+                    {!! Form::text('vencimento_lote', null, ['id' => 'vencimento_lote', 'class' => 'form-control data']) !!}
                 </div>
             </div>
             <div class="col-xs-2 col-sm-2 col-md-2">
@@ -107,28 +119,28 @@
                 </div>
             </div>
             <div class="col-xs-2 col-sm-2 col-md-2 text-center">
-                <div class="form-group">
-                    {!! Form::button('Adicionar <i class="fa fa-check"></i>', ['id' => 'add_item', 'class' => 'btn btn-default', 'style' => 'margin-top: 20px;']) !!}
-                </div>
+                {!! Form::button('Adicionar <i class="fa fa-check"></i>', ['id' => 'add_item', 'class' => 'btn btn-default', 'style' => 'margin-top: 20px;']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12" style="margin-top: 20px;">
             <table class="table table-striped table-hover">
                 <thead>
                     <th>Nome</th>
-                    <th style="width: 200px;">Quantidade</th>
-                    <th style="width: 200px;">Valor</th>
-                    <th style="width: 200px;">Total</th>
+                    <th>Número do Lote</th>
+                    <th>Vencimento do Lote</th>
+                    <th>Quantidade</th>
+                    <th>Valor</th>
+                    <th>Total</th>
                     <th style="width: 45px;"></th>
                 </thead>
                 <tbody></tbody>
             </table>
         </div>
-        {!! Form::open(array('id' => 'form_entradas_step2', 'method' => 'post', 'route' => 'entradas.store')) !!}
-            <div class="col-xs-12 col-sm-12 col-md-12 text-center">
-                {!! Form::submit('Finalizar', ['class' => 'btn btn-primary']) !!}
-            </div>
-        {!! Form::close() !!}
+        <div class="col-xs-12 col-sm-12 col-md-12 text-center">
+            {!! Form::open(array('id' => 'form_entradas_step2', 'method' => 'post', 'route' => 'entradas.store')) !!}
+            {!! Form::submit('Finalizar', ['class' => 'btn btn-primary']) !!}
+            {!! Form::close() !!}
+        </div>
     </div>
 </div>
 
@@ -170,19 +182,23 @@
         var produtos = $('#produtos');
 
         var produto_selecionado = $('#produtos option:selected');
+        var numero_lote = $('#numero_lote');
+        var vencimento_lote = $('#vencimento_lote');
         var quantidade = $('#quantidade');
         var valor = $('#valor');
 
         var valor_total = quantidade.maskMoney('unmasked')[0] * valor.maskMoney('unmasked')[0];
 
         var td_produto = '<td>' + produto_selecionado.text() + '</td>';
+        var td_numero_lote = '<td>' + numero_lote.val() + '</td>';
+        var td_vencimento_lote = '<td>' + vencimento_lote.val() + '</td>';
         var td_quantidade = '<td>' + quantidade.val() + '</td>';
         var td_valor = '<td>' + valor.val() + '</td>';
         var td_total = '<td>' + valor_total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 4 }).replace("R$", "R$ ") + '</td>';
         var td_acoes = '<td><i class="fa fa-trash text-danger" onclick="deleteRow(this)" style="font-size: 20px; cursor: pointer;"></i></td>';
         
         setTimeout(function() {
-            $('table tbody').append('<tr>' + td_produto + td_quantidade + td_valor + td_total + td_acoes +'</tr>');
+            $('table tbody').append('<tr>' + td_produto + td_numero_lote + td_vencimento_lote + td_quantidade + td_valor + td_total + td_acoes +'</tr>');
 
             produtos.val('').trigger('change');
             quantidade.val('0,0000');
