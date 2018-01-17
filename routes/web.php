@@ -45,10 +45,14 @@ Route::resource('unidades', 'UnidadeMedidasController');
 Route::resource('categorias', 'CategoriasController');
 
 // Produtos
-Route::get('produtos/find', 'ProdutosController@find');
+Route::get('produtos/find', ['as' => 'produtos.find', 'uses' => 'ProdutosController@find']);
 Route::resource('produtos', 'ProdutosController');
 
 // Entradas
+Route::get('entradas/{entrada}/add-item', ['as' => 'entradas.add-item.create', 'uses' => 'EntradasController@createItem']);
+Route::post('entradas/{entrada}/add-item', ['as' => 'entradas.add-item.store', 'uses' => 'EntradasController@storeItem']);
+Route::get('entradas/{entrada}/end', ['as' => 'entradas.end.create', 'uses' => 'EntradasController@createEnd']);
+Route::put('entradas/{entrada}/end', ['as' => 'entradas.end.store', 'uses' => 'EntradasController@storeEnd']);
 Route::resource('entradas', 'EntradasController');
 
 // Organizações
@@ -62,4 +66,4 @@ Route::resource('fornecedores', 'FornecedoresController', ['parameters' => [
 ]]);
 
 // Cidades
-Route::get('cidades/{estado}', 'CidadesController@getCidades');
+Route::get('cidades/{estado}', ['as' => 'cidades.show', 'uses' => 'CidadesController@getCidades']);

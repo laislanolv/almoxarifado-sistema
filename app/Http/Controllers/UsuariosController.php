@@ -44,14 +44,15 @@ class UsuariosController extends Controller {
     }
 
     public function show(Usuario $usuario) {
-        return view('usuarios.show', compact('usuario'));
+        $departamentos = $usuario->departamentos->pluck('nome');
+        return view('usuarios.show', compact('departamentos', 'usuario'));
     }
 
     public function edit(Usuario $usuario) {
         $tipos = UsuarioTipo::pluck('nome', 'id');
         $organizacoes = Organizacao::pluck('nome', 'id');
         $departamentos = Departamento::pluck('nome', 'id');
-        $departamentos_selecionados = UsuarioDepartamento::where('id_usuario', $usuario->id)->pluck('id_departamento');
+        $departamentos_selecionados = $usuario->departamentos()->pluck('id_departamento');
         return view('usuarios.edit', compact('tipos', 'organizacoes', 'departamentos', 'departamentos_selecionados', 'usuario'));
     }
 

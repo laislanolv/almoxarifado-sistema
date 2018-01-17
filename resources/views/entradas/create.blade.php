@@ -24,6 +24,27 @@
     </div>
     @endif
 
-    @include('entradas.form')
+    <div class="stepwizard" style="margin-top: 20px;">
+        <div class="stepwizard-row setup-panel">
+            <div class="stepwizard-step">
+                <a href="#" class="btn btn-primary btn-circle"><i class="fa fa-file-text-o"></i></a>
+                <p>Cabeçalho da Nota</p>
+            </div>
+            <div class="stepwizard-step">
+                <a href="#" class="btn btn-default btn-circle" disabled><i class="fa fa-list-ol"></i></a>
+                <p>Itens da Nota</p>
+            </div>
+            <div class="stepwizard-step">
+                <a href="#" class="btn btn-default btn-circle" disabled><i class="fa fa-check"></i></a>
+                <p>Finalizar Entrada</p>
+            </div>
+        </div>
+    </div>
+
+    {!! Form::open(array('id' => 'form_entradas_step1', 'method' => 'post', 'files' => true, 'route' => 'entradas.store')) !!}
+        {!! Form::hidden('id_usuario', isset($entrada) ? $entrada->id_usuario : '1') !!}
+        {!! Form::hidden('valor_nota', '') !!}
+        @include('entradas.form-step1')
+    {!! Form::close() !!}
     
 @endsection

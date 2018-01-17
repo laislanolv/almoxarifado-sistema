@@ -38,4 +38,8 @@ class Produto extends Model {
     public function unidadeSaida() {
         return $this->belongsTo('Estoque\UnidadeMedida', 'id_unidade_saida');
     }
+
+    public function entradas() {
+        return $this->belongsToMany('Estoque\Entrada', 'entradas_produtos', 'id_produto', 'id_entrada');
+    }
 }

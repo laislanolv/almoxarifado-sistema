@@ -26,7 +26,17 @@ class Entrada extends Model {
         'status'
     ];
 
-    public static function formatarData($data) {
+    public static function formatData($data) {
         return Carbon::createFromFormat('d/m/Y', $data)->toDateString();
+    }
+
+    public static function uploadNota($anexo) {
+        $nome = md5(time().uniqid(rand(), true)) . '.' . $anexo->getClientOriginalExtension();
+        $anexo->move(public_path('uploads/notas'), $nome);
+        return $nome;
+    }
+
+    public function produtos() {
+        return $this->belongsToMany('Estoque\Produto', 'entradas_produtos', 'id_entrada', 'id_produto')->withPivot('id', 'numero_lote', 'vencimento_lote', 'quantidade', 'valor_unitario')->orderBy('entradas_produtos.id', 'asc');
     }
 }

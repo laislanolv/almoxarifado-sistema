@@ -30,6 +30,25 @@
     </div>
     @endif
     
-    @include('entradas.form')
+    <div class="stepwizard" style="margin-top: 20px;">
+        <div class="stepwizard-row setup-panel">
+            <div class="stepwizard-step">
+                <a href="{{ route('entradas.edit', $entrada->id) }}" class="btn btn-primary btn-circle"><i class="fa fa-file-text-o"></i></a>
+                <p>Cabeçalho da Nota</p>
+            </div>
+            <div class="stepwizard-step">
+                <a href="{{ route('entradas.add-item.create', $entrada->id) }}" class="btn btn-default btn-circle"><i class="fa fa-list-ol"></i></a>
+                <p>Itens da Nota</p>
+            </div>
+            <div class="stepwizard-step">
+                <a href="#" class="btn btn-default btn-circle" disabled><i class="fa fa-check"></i></a>
+                <p>Finalizar Entrada</p>
+            </div>
+        </div>
+    </div>
+
+    {!! Form::open(array('id' => 'form_entradas_step1', 'method' => 'patch', 'files' => true, 'route' => ['entradas.update', $entrada->id])) !!}
+        @include('entradas.form-step1')
+    {!! Form::close() !!}
     
 @endsection

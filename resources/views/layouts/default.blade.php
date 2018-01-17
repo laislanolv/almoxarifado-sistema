@@ -9,15 +9,16 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet">
         <link href="{{ asset('/libs/select2-bootstrap-theme/dist/select2-bootstrap.min.css') }}" rel="stylesheet">
         <link href="{{ asset('/libs/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('/libs/stepwizard/css/stepwizard.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/stepwizard.css') }}" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/i18n/pt-BR.js"></script>
         <script src="{{ asset('/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
         <script src="{{ asset('/libs/bootstrap-datepicker/locales/bootstrap-datepicker.pt-BR.min.js') }}"></script>
-        <script src="{{ asset('/libs/stepwizard/js/stepwizard.js') }}"></script>
         <script src="{{ asset('/libs/jquery-maskmoney/dist/jquery.maskMoney.min.js') }}"></script>
+        <script src="{{ asset('/libs/jquery-validation/dist/jquery.validate.min.js') }}"></script>
+        <script src="{{ asset('/libs/jquery-validation/dist/additional-methods.min.js') }}"></script>
     </head>
     <body>
         <header>
