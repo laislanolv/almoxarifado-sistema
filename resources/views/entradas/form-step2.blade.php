@@ -1,39 +1,41 @@
 <div id="step2" class="row setup-content" style="margin-top: 20px;">
-    <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="col-xs-2 col-sm-2 col-md-2">
-            <div class="form-group">
-                <strong>Produto:</strong>
-                {!! Form::select(null, [], null, ['placeholder' => 'Selecione o Produto', 'id' => 'produtos', 'class' => 'form-control', 'style' => 'width: 100%;', 'required' => 'required']) !!}
+    {!! Form::open(array('id' => 'form_entradas_step2', 'method' => 'post', 'route' => ['entradas.add-item.store', $entrada->id])) !!}
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-2 col-sm-2 col-md-2">
+                <div class="form-group">
+                    <strong>Produto:</strong>
+                    {!! Form::select('id_produto', [], null, ['placeholder' => 'Selecione o Produto', 'id' => 'produtos', 'class' => 'form-control', 'style' => 'width: 100%;', 'required' => 'required']) !!}
+                </div>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2">
+                <div class="form-group">
+                    <strong>Número do Lote:</strong>
+                    {!! Form::text('numero_lote', null, ['id' => 'numero_lote', 'class' => 'form-control']) !!}
+                </div>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2">
+                <div class="form-group">
+                    <strong>Vencimento do Lote:</strong>
+                    {!! Form::text('vencimento_lote', null, ['id' => 'vencimento_lote', 'class' => 'form-control data']) !!}
+                </div>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2">
+                <div class="form-group">
+                    <strong>Quantidade:</strong>
+                    {!! Form::text('quantidade', null, ['id' => 'quantidade', 'maxlength' => '15', 'class' => 'form-control quantidade', 'required' => 'required']) !!}
+                </div>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2">
+                <div class="form-group">
+                    <strong>Valor:</strong>
+                    {!! Form::text('valor_unitario', null, ['id' => 'valor_unitario', 'maxlength' => '21', 'class' => 'form-control real', 'required' => 'required']) !!}
+                </div>
+            </div>
+            <div class="col-xs-2 col-sm-2 col-md-2 text-center">
+                {!! Form::button('Adicionar <i class="fa fa-check"></i>', ['type' => 'button', 'id' => 'btn-submit-step2', 'class' => 'btn btn-default', 'style' => 'margin-top: 20px;']) !!}
             </div>
         </div>
-        <div class="col-xs-2 col-sm-2 col-md-2">
-            <div class="form-group">
-                <strong>Número do Lote:</strong>
-                {!! Form::text('numero_lote', null, ['id' => 'numero_lote', 'class' => 'form-control']) !!}
-            </div>
-        </div>
-        <div class="col-xs-2 col-sm-2 col-md-2">
-            <div class="form-group">
-                <strong>Vencimento do Lote:</strong>
-                {!! Form::text('vencimento_lote', null, ['id' => 'vencimento_lote', 'class' => 'form-control data']) !!}
-            </div>
-        </div>
-        <div class="col-xs-2 col-sm-2 col-md-2">
-            <div class="form-group">
-                <strong>Quantidade:</strong>
-                {!! Form::text('quantidade', null, ['id' => 'quantidade', 'maxlength' => '15', 'class' => 'form-control quantidade', 'required' => 'required']) !!}
-            </div>
-        </div>
-        <div class="col-xs-2 col-sm-2 col-md-2">
-            <div class="form-group">
-                <strong>Valor:</strong>
-                {!! Form::text('valor_unitario', null, ['id' => 'valor_unitario', 'maxlength' => '21', 'class' => 'form-control real', 'required' => 'required']) !!}
-            </div>
-        </div>
-        <div class="col-xs-2 col-sm-2 col-md-2 text-center">
-            {!! Form::button('Adicionar <i class="fa fa-check"></i>', ['type' => 'button', 'id' => 'btn-submit-step2', 'class' => 'btn btn-default', 'style' => 'margin-top: 20px;']) !!}
-        </div>
-    </div>
+    {!! Form::close() !!}
 
     <div class="col-xs-12 col-sm-12 col-md-12" style="margin-top: 20px;">
         <table class="table table-striped table-hover">
@@ -55,11 +57,16 @@
                         <td class="text-right"><span class="quantidade-inserida">{{ $item->pivot->quantidade }}</span</td>
                         <td class="text-right"><span class="valor-unitario">{{ $item->pivot->valor_unitario }}</span></td>
                         <td class="text-right"><span class="valor-total-item"></span></td>
-                        <td><i class="fa fa-trash text-danger" style="font-size: 20px; cursor: pointer;"></i></td>
+                        <td>
+                            {!! Form::open(['id' => 'form_excluir_' . $item->pivot->id, 'method' => 'delete', 'route' => ['entradas.del-item.destroy', $entrada->id], 'style'=>'display: inline']) !!}
+                            {!! Form::hidden('id_item', $item->pivot->id) !!}
+                            {!! Form::button('<i class="fa fa-trash"></i>', ['class' => 'btn btn-danger modal-excluir', 'style' => 'padding: 1px 6px;']) !!}
+                            {!! Form::close() !!}
+                        </td>
                     </tr>
                 @endforeach
-                    <tr>
-                        <td></td>
+                    <tr style="background-color: #ddd">
+                        <td class="text-left"><b>Total de <span class="numero-total-itens"></span> itens</b></td>
                         <td></td>
                         <td></td>
                         <td></td>
@@ -71,8 +78,6 @@
         </table>
     </div>
 </div>
-
-<input type="hidden" id="teste" value="">
 
 @section('scripts')
 <script>
@@ -97,19 +102,22 @@
         });
 
         var soma = 0;
+        var numero_total_itens = 0;
 
         $('.valor-total-item').each(function(i) {
             var valor_total_item = $(this).text().replace('.', '').replace(',', '').replace('R$ ', '');
             var valor_total_nota = soma;
             soma = eval(valor_total_item) + eval(valor_total_nota);
+            numero_total_itens++;
         });
 
         soma = soma.toString();
         len = soma.length;
-        soma_formatada = soma.substring(0, len - 4) + "." + soma.substring(len - 4);
+        soma_formatada = soma.substring(0, len - 4) + '.' + soma.substring(len - 4);
         soma_formatada = parseFloat(soma_formatada);
         
         $('.valor-total-nota').text(soma_formatada.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 4 }).replace("R$", "R$ "));
+        $('.numero-total-itens').text(numero_total_itens);
         
         $('#produtos').select2({
             placeholder: 'Selecione o Produto',
@@ -189,12 +197,13 @@
 
         if ($('#form_entradas_step2').valid()) {
             $('input[name=valor_unitario]').val($('#valor_unitario').maskMoney('unmasked')[0]);
-            $('input[name=quantidade]').val($('#quantidade').val().replace(',', '.'));
-            $('input[name=id_produto]').val($('#produtos').val());
+            $('input[name=quantidade]').val($('#quantidade').maskMoney('unmasked')[0]);
             $('#form_entradas_step2').submit();
         } else {
             $(this).prop('disabled', false).html('Adicionar <i class="fa fa-check"></i>');
         }
     });
 </script>
+
+<script src="{{ asset('/js/modal-excluir.js') }}"></script>
 @endsection

@@ -71,6 +71,13 @@
 </div>
 
 @section('scripts')
+@if (!isset($entrada))
+    <script>
+        $(document).ready(function() {
+            $('#valor_nota').val('');
+        });
+    </script>
+@endif
 <script>
     $('#form_entradas_step1').submit(function() {
         $(this).find('input[type=submit]').prop('disabled', true).attr('value', 'Aguarde...');

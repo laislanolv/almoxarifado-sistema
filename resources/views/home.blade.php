@@ -68,7 +68,7 @@
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="m-b-md">
-                    <img src="img/logo.png" alt="Logo">    
+                    <img src="img/logo.png" alt="Logo">
                 </div>
 
                 <div class="title m-b-md">

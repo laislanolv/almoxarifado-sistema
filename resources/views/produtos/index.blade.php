@@ -58,7 +58,11 @@
                             <td>
                                 <a href="{{ route('produtos.show', $produto->id) }}" class="btn btn-info" title="Visualizar"><i class="fa fa-eye"></i></a>
                                 <a href="{{ route('produtos.edit', $produto->id) }}" class="btn btn-primary" title="Editar"><i class="fa fa-pencil"></i></a>
-                                <a href="#" class="btn btn-danger" title="Excluir" data-toggle="modal" data-target="#modal_excluir"><i class="fa fa-trash"></i></a>
+                                @if($produtos->total() > 0)
+                                    {!! Form::open(['id' => 'form_excluir_' . $produto->id, 'method' => 'delete', 'route' => ['produtos.destroy', $produto->id], 'style'=>'display: inline']) !!}
+                                    {!! Form::button('<i class="fa fa-trash"></i>', ['class' => 'btn btn-danger modal-excluir']) !!}
+                                    {!! Form::close() !!}
+                                @endif
                             </td>
                         </tr>
                     @endforeach
@@ -71,30 +75,10 @@
         {{ $produtos->render() }}
         <h6><b>{{ $produtos->total() }}</b> {{ $produtos->total() == 1 ? 'registro' : 'registros' }} no total</h6>
     </section>
-    
-    @if($produtos->total() > 0)
-        <div id="modal_excluir" class="modal fade" tabindex="-1" role="dialog">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title">Atenção!</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Deseja mesmo excluir?</p>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="col-xs-12 col-sm-12 col-md-12">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Não</button>
-                            {!! Form::open(['method' => 'delete', 'route' => ['produtos.destroy', $produto->id], 'style'=>'display: inline']) !!}
-                            {!! Form::submit('Sim', ['class' => 'btn btn-danger']) !!}
-                            {!! Form::close() !!}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
 @endsection
+
+@if($produtos->total() > 0)
+    @section('scripts')
+        <script src="{{ asset('/js/modal-excluir.js') }}"></script>
+    @endsection
+@endif

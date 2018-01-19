@@ -9,7 +9,6 @@ use Estoque\FonteRecurso;
 use Estoque\Produto;
 
 use Estoque\Entrada;
-use Estoque\EntradaProduto;
 use Illuminate\Http\Request;
 use Estoque\Http\Requests\EntradasProdutosRequest;
 use Estoque\Http\Requests\EntradasRequest;
@@ -47,26 +46,32 @@ class EntradasController extends Controller {
     }
 
     public function storeItem(EntradasProdutosRequest $request, Entrada $entrada) {
-        $data = $request->all();
-        $data['id_entrada'] = $entrada->id;
+        $data = [
+            'numero_lote' => $request->numero_lote,
+            'vencimento_lote' => $request->vencimento_lote ? Entrada::formatData($request->vencimento_lote) : null,
+            'quantidade' => $request->quantidade,
+            'valor_unitario' => $request->valor_unitario
+        ];
 
-        if ($request->vencimento_lote) {
-            $data['vencimento_lote'] = EntradaProduto::formatData($request->vencimento_lote);        
-        }
-
-        EntradaProduto::create($data);
+        $produto = Produto::find($request->id_produto);
+        $entrada->produtos()->attach($produto->id, $data);
         return redirect()->route('entradas.add-item.create', $entrada->id)->with('success', 'Produto inserido!');
+    }
+
+    public function destroyItem(Request $request, Entrada $entrada) {
+        $entrada->produtos()->wherePivot('id', $request->id_item)->detach();
+        return redirect()->route('entradas.add-item.create', $entrada->id)->with('success', 'Produto deletado!');
     }
 
     public function createEnd(Entrada $entrada) {
         return view('entradas.end', compact('entrada'));
     }
 
-    public function storeEnd(Entrada $entrada) {
-       
-    }
+    public function storeEnd(Entrada $entrada) {}
 
     public function edit(Entrada $entrada) {
+        // A entrada #entrada já está finalizada e não é mais possível editar.
+        // redirect para vizualizar
         $departamentos = Departamento::pluck('nome', 'id');
         $fornecedores = Fornecedor::pluck('nome_fantasia', 'id');
         $fontes_recursos = FonteRecurso::pluck('nome', 'id');
@@ -78,8 +83,13 @@ class EntradasController extends Controller {
         return redirect()->route('entradas.index')->with('success', 'Editado com sucesso!');
     }
 
-    public function destroy($id) {
-        Entrada::destroy($id);
+    public function destroy(Entrada $entrada) {
+        if ($entrada->finalizada == 1) {
+            return redirect()->route('entradas.index')->with('danger', 'A entrada #' . $entrada->id . ' já está finalizada e não é mais possível deletar.');
+        }
+
+        $entrada->produtos()->detach();
+        $entrada->delete();
         return redirect()->route('entradas.index')->with('success', 'Deletado com sucesso!');
     }
 }

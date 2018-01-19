@@ -46,10 +46,7 @@
             </div>
         </div>
     </div>
-
-    {!! Form::open(array('id' => 'form_entradas_step2', 'method' => 'post', 'route' => ['entradas.add-item.store', $entrada->id])) !!}
-        {!! Form::hidden('id_produto', '') !!}
-        @include('entradas.form-step2')
-    {!! Form::close() !!}
+    
+    @include('entradas.form-step2')
     
 @endsection

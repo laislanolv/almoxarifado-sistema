@@ -51,6 +51,7 @@ Route::resource('produtos', 'ProdutosController');
 // Entradas
 Route::get('entradas/{entrada}/add-item', ['as' => 'entradas.add-item.create', 'uses' => 'EntradasController@createItem']);
 Route::post('entradas/{entrada}/add-item', ['as' => 'entradas.add-item.store', 'uses' => 'EntradasController@storeItem']);
+Route::delete('entradas/{entrada}/del-item', ['as' => 'entradas.del-item.destroy', 'uses' => 'EntradasController@destroyItem']);
 Route::get('entradas/{entrada}/end', ['as' => 'entradas.end.create', 'uses' => 'EntradasController@createEnd']);
 Route::put('entradas/{entrada}/end', ['as' => 'entradas.end.store', 'uses' => 'EntradasController@storeEnd']);
 Route::resource('entradas', 'EntradasController');

@@ -1,0 +1,15 @@
+.swal-overlay {
+    background-color: rgba(0, 0, 0, 0.45);
+}
+
+.swal-text {
+    padding: 15px;
+    font-weight: bold;
+}
+
+.swal-footer {
+    background-color: rgb(245, 248, 250);
+    margin-top: 32px;
+    border-top: 1px solid #e9eef1;
+    overflow: hidden;
+}
