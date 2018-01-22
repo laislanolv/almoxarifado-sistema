@@ -43,7 +43,6 @@
 
     {!! Form::open(array('id' => 'form_entradas_step1', 'method' => 'post', 'files' => true, 'route' => 'entradas.store')) !!}
         {!! Form::hidden('id_usuario', isset($entrada) ? $entrada->id_usuario : '1') !!}
-        {!! Form::hidden('valor_nota', '') !!}
         @include('entradas.form-step1')
     {!! Form::close() !!}
     

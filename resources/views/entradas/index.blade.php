@@ -56,7 +56,7 @@
                                 @endif
                             </td>
                             <td>
-                                <!-- <a href="{{ route('entradas.show', $entrada->id) }}" class="btn btn-info" title="Visualizar"><i class="fa fa-eye"></i></a> -->
+                                <a href="{{ route('entradas.show', $entrada->id) }}" class="btn btn-info" title="Visualizar"><i class="fa fa-eye"></i></a>
                                 <a href="{{ route('entradas.edit', $entrada->id) }}" class="btn btn-primary" title="Editar"><i class="fa fa-pencil"></i></a>
                                 @if($entradas->total() > 0)
                                     {!! Form::open(['id' => 'form_excluir_' . $entrada->id, 'method' => 'delete', 'route' => ['entradas.destroy', $entrada->id], 'style'=>'display: inline']) !!}

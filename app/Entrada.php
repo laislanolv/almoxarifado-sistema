@@ -36,6 +36,11 @@ class Entrada extends Model {
         return $nome;
     }
 
+    public static function deleteNota($anexo) {
+        $delete = unlink(public_path('uploads/notas/' . $anexo));
+        return $delete;
+    }
+
     public function produtos() {
         return $this->belongsToMany('Estoque\Produto', 'entradas_produtos', 'id_entrada', 'id_produto')->withPivot('id', 'numero_lote', 'vencimento_lote', 'quantidade', 'valor_unitario')->orderBy('entradas_produtos.id', 'asc');
     }

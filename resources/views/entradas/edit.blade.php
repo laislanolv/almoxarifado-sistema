@@ -48,6 +48,7 @@
     </div>
 
     {!! Form::open(array('id' => 'form_entradas_step1', 'method' => 'patch', 'files' => true, 'route' => ['entradas.update', $entrada->id])) !!}
+        {!! Form::hidden('id_usuario', isset($entrada) ? $entrada->id_usuario : '1') !!}
         @include('entradas.form-step1')
     {!! Form::close() !!}
     

@@ -39,7 +39,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Valor da Nota:</strong>
-                {!! Form::text(null, isset($entrada) ? number_format($entrada->valor_nota, 4, ',', '.') : null, ['id' => 'valor_nota', 'placeholder' => 'Valor da Nota', 'class' => 'form-control real']) !!}
+                {!! Form::text('valor_nota', isset($entrada) ? number_format($entrada->valor_nota, 4, ',', '.') : null, ['id' => 'valor_nota', 'placeholder' => 'Valor da Nota', 'class' => 'form-control real']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
@@ -54,7 +54,10 @@
                 @if(!isset($entrada->anexo_nota))
                     {!! Form::file('anexo_nota', ['placeholder' => 'Anexo da Nota', 'class' => 'form-control file']) !!}
                 @else
-                    <br><a href='{{ asset("uploads/notas/$entrada->anexo_nota") }}' target="_blank"><i class="fa fa-file-text-o"></i> <b>Abir Nota Fiscal anexada</b></a> <b>/</b> <a href="#" class="text-danger">(deletar o anexo)</a>
+                    <br>
+                    <a href="{{ asset('uploads/notas/$entrada->anexo_nota') }}" target="_blank"><i class="fa fa-file-text-o"></i> <b>Abir Nota Fiscal anexada</b></a>
+                    <b>/</b>
+                    <a href="#" id="deletar_nota" class="text-danger">(deletar o anexo)</a>
                 @endif
             </div>
         </div>
@@ -78,11 +81,53 @@
         });
     </script>
 @endif
+@if (isset($entrada))
+    <script>
+        $('#deletar_nota').click(function(e) {
+            e.preventDefault();
+    
+            swal({
+                title: 'Tem certeza?',
+                text: 'Atenção! Esta ação não pode ser desfeita.', 
+                icon: 'warning',
+                buttons: true,
+                buttons: ['Cancelar', 'Deletar'],
+                dangerMode: true
+            }).then((willDelete) => {
+                if (willDelete) {
+                    swal('Aguarde... o anexo está sendo deletado!', {
+                        title: 'Pronto!',
+                        icon: 'success',
+                        buttons: false
+                    });
+    
+                    setTimeout(function() {
+                        $.ajax({
+                            url: '{{ route("entradas.del-attachment.destroy", $entrada->id) }}',
+                            type: 'post',
+                            data: {
+                                _token: $('input[name=_token]').val(),
+                                _method: 'patch'
+                            },
+                            success: function() {
+                                window.location.href = '{{ route("entradas.edit", $entrada->id) }}';
+                            }
+                        });
+                    }, 2000);
+                } else {
+                    swal('Anexo não deletado!', {
+                        title: 'Cancelado!',
+                        icon: 'success',
+                    });
+                }
+            });
+        });
+    </script>
+@endif
 <script>
     $('#form_entradas_step1').submit(function() {
         $(this).find('input[type=submit]').prop('disabled', true).attr('value', 'Aguarde...');
-        var valor_nota = $('#valor_nota').maskMoney('unmasked')[0];
-        $('input[name=valor_nota]').val(valor_nota);
+        $('input[name=valor_nota]').val($('#valor_nota').maskMoney('unmasked')[0]);
     });
 </script>
 @endsection

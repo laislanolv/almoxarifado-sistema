@@ -14,6 +14,10 @@ use Estoque\Http\Requests\EntradasProdutosRequest;
 use Estoque\Http\Requests\EntradasRequest;
 
 class EntradasController extends Controller {
+    public function __construct() {
+        $this->middleware('check.nota')->except(['index', 'store', 'create', 'show']);
+    }
+
     public function index() {
         $entradas = Entrada::orderBy('id', 'asc')->paginate(10);
         return view('entradas.index', compact('entradas'))->with('limite_texto', '30');
@@ -63,6 +67,17 @@ class EntradasController extends Controller {
         return redirect()->route('entradas.add-item.create', $entrada->id)->with('success', 'Produto deletado!');
     }
 
+    public function destroyAttachment(Request $request, Entrada $entrada) {
+        Entrada::deleteNota($entrada->anexo_nota);
+        $entrada->anexo_nota = null;
+        $entrada->save();
+        $request->session()->put('success', 'Anexo deletado!');
+    }
+
+    public function show(Entrada $entrada) {
+        return view('entradas.show', compact('entrada'));
+    }
+
     public function createEnd(Entrada $entrada) {
         return view('entradas.end', compact('entrada'));
     }
@@ -70,8 +85,6 @@ class EntradasController extends Controller {
     public function storeEnd(Entrada $entrada) {}
 
     public function edit(Entrada $entrada) {
-        // A entrada #entrada já está finalizada e não é mais possível editar.
-        // redirect para vizualizar
         $departamentos = Departamento::pluck('nome', 'id');
         $fornecedores = Fornecedor::pluck('nome_fantasia', 'id');
         $fontes_recursos = FonteRecurso::pluck('nome', 'id');
@@ -79,15 +92,13 @@ class EntradasController extends Controller {
     }
 
     public function update(EntradasRequest $request, Entrada $entrada) {
-        $entrada->update($request->all());
-        return redirect()->route('entradas.index')->with('success', 'Editado com sucesso!');
+        $data = $request->all();
+        $data['data'] = Entrada::formatData($request->data);
+        $entrada->update($data);
+        return redirect()->route('entradas.edit', $entrada->id)->with('success', 'Editado com sucesso!');
     }
 
     public function destroy(Entrada $entrada) {
-        if ($entrada->finalizada == 1) {
-            return redirect()->route('entradas.index')->with('danger', 'A entrada #' . $entrada->id . ' já está finalizada e não é mais possível deletar.');
-        }
-
         $entrada->produtos()->detach();
         $entrada->delete();
         return redirect()->route('entradas.index')->with('success', 'Deletado com sucesso!');
