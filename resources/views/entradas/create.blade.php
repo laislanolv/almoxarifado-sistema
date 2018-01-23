@@ -2,6 +2,18 @@
 @section('title', 'Entradas - Cadastrar')
 
 @section('content')
+    @if(session('success'))
+        <div class="alert alert-success alert-dismissible fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+            {{ session('success') }}
+        </div>
+    @endif
+    @if(session('danger'))
+        <div class="alert alert-danger alert-dismissible fade in">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Fechar"><span aria-hidden="true">&times;</span></button>
+            <strong>{{ session('danger') }}</strong>
+        </div>
+    @endif
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
@@ -28,15 +40,15 @@
         <div class="stepwizard-row setup-panel">
             <div class="stepwizard-step">
                 <a href="#" class="btn btn-primary btn-circle"><i class="fa fa-file-text-o"></i></a>
-                <p>Cabeçalho da Nota</p>
+                <p><b>Cabeçalho da Nota</b></p>
             </div>
             <div class="stepwizard-step">
                 <a href="#" class="btn btn-default btn-circle" disabled><i class="fa fa-list-ol"></i></a>
-                <p>Itens da Nota</p>
+                <p><b>Itens da Nota</b></p>
             </div>
             <div class="stepwizard-step">
                 <a href="#" class="btn btn-default btn-circle" disabled><i class="fa fa-check"></i></a>
-                <p>Finalizar Entrada</p>
+                <p><b>Finalizar Entrada</b></p>
             </div>
         </div>
     </div>

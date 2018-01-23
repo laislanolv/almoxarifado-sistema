@@ -15,7 +15,10 @@ use Estoque\Http\Requests\EntradasRequest;
 
 class EntradasController extends Controller {
     public function __construct() {
-        $this->middleware('check.nota')->except(['index', 'store', 'create', 'show']);
+        $this->middleware('entrada.check.nota')->except(['index', 'store', 'create', 'show']);
+        $this->middleware('entrada.check.itens')->only(['createEnd', 'storeEnd']);
+        $this->middleware('entrada.check.lote')->only('storeItem');
+        $this->middleware('entrada.check.valor.nota')->only(['createEnd', 'storeEnd']);;
     }
 
     public function index() {
@@ -74,15 +77,19 @@ class EntradasController extends Controller {
         $request->session()->put('success', 'Anexo deletado!');
     }
 
-    public function show(Entrada $entrada) {
-        return view('entradas.show', compact('entrada'));
-    }
-
     public function createEnd(Entrada $entrada) {
         return view('entradas.end', compact('entrada'));
     }
 
-    public function storeEnd(Entrada $entrada) {}
+    public function storeEnd(Entrada $entrada) {
+        $entrada->finalizada = 1;
+        $entrada->save();
+        return redirect()->route('entradas.index')->with('success', 'Entrada finalizada!');
+    }
+
+    public function show(Entrada $entrada) {
+        return view('entradas.show', compact('entrada'));
+    }
 
     public function edit(Entrada $entrada) {
         $departamentos = Departamento::pluck('nome', 'id');

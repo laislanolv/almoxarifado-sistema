@@ -16,7 +16,7 @@ class ProdutosRequest extends FormRequest {
             'id_unidade_entrada' => 'required|integer',
             'id_unidade_saida' => 'required|integer',
             'proporcao' => 'nullable|integer',
-            'nome' => 'required|string|max:200',
+            'nome' => 'required|string|max:200|unique:produtos,nome',
             'descricao' => 'nullable|string',
             'altura' => 'nullable|numeric',
             'largura' => 'nullable|numeric',

@@ -3,7 +3,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Usuário:</strong>
-                {!! Form::text(null, isset($entrada) ? $entrada->id_usuario : 'Laislan Oliveira', ['disabled' => 'disabled', 'class' => 'form-control']) !!}
+                {!! Form::text(null, 'Laislan Oliveira', ['disabled' => 'disabled', 'class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

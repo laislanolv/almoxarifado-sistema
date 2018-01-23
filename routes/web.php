@@ -53,7 +53,7 @@ Route::group(['prefix' => 'entradas'], function () {
     Route::get('/{entrada}/add-item', ['as' => 'entradas.add-item.create', 'uses' => 'EntradasController@createItem']);
     Route::post('/{entrada}/add-item', ['as' => 'entradas.add-item.store', 'uses' => 'EntradasController@storeItem']);
     Route::delete('/{entrada}/del-item', ['as' => 'entradas.del-item.destroy', 'uses' => 'EntradasController@destroyItem']);
-    Route::get('/{entrada}/end', ['as' => 'entradas.end.create', 'uses' => 'EntradasController@createEnd']);
+    Route::post('/{entrada}/end', ['as' => 'entradas.end.create', 'uses' => 'EntradasController@createEnd']);
     Route::match(['put', 'patch'], '/{entrada}/end', ['as' => 'entradas.end.store', 'uses' => 'EntradasController@storeEnd']);
     Route::match(['put', 'patch'], '/{entrada}/del-attachment', ['as' => 'entradas.del-attachment.destroy', 'uses' => 'EntradasController@destroyAttachment']);
 });

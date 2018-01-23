@@ -23,7 +23,7 @@
                 <th>Número da Nota</th>
                 <th>Data da Nota</th>
                 <th>Observações</th>
-                <th>Status</th>
+                <th>Finalizada</th>
                 <th style="width: 20%;">Ações</th>
             </thead>
             <tbody>
@@ -49,10 +49,10 @@
                                 @endif
                             </td>
                             <td>
-                                @if ($entrada->status == 0)
-                                    <span class="label label-default">Inativo</span>
+                                @if ($entrada->finalizada == 0)
+                                    <span class="label label-default">Não</span>
                                 @else
-                                    <span class="label label-success">Ativo</span>
+                                    <span class="label label-success">Sim</span>
                                 @endif
                             </td>
                             <td>

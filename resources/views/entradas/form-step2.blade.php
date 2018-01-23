@@ -105,19 +105,16 @@
         var numero_total_itens = 0;
 
         $('.valor-total-item').each(function(i) {
-            var valor_total_item = $(this).text().replace('.', '').replace(',', '').replace('R$ ', '');
+            var valor_total_item = $(this).text().replace('.', '').replace(',', '.').replace('R$ ', '');
             var valor_total_nota = soma;
-            soma = eval(valor_total_item) + eval(valor_total_nota);
+            soma = parseFloat(valor_total_item) + parseFloat(valor_total_nota);
             numero_total_itens++;
         });
-
-        soma = soma.toString();
-        len = soma.length;
-        soma_formatada = soma.substring(0, len - 4) + '.' + soma.substring(len - 4);
-        soma_formatada = parseFloat(soma_formatada);
         
-        $('.valor-total-nota').text(soma_formatada.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 4 }).replace("R$", "R$ "));
+        $('.valor-total-nota').text(soma.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 4 }).replace("R$", "R$ "));
+        $('input[name=valor_total_nota]').val(soma);
         $('.numero-total-itens').text(numero_total_itens);
+        $('input[name=quantidade_itens_nota]').val(numero_total_itens);
         
         $('#produtos').select2({
             placeholder: 'Selecione o Produto',

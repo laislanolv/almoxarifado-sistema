@@ -57,6 +57,9 @@ class Kernel extends HttpKernel
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \Estoque\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'check.nota' => \Estoque\Http\Middleware\CheckNota::class,
+        'entrada.check.nota' => \Estoque\Http\Middleware\EntradaCheckNota::class,
+        'entrada.check.itens' => \Estoque\Http\Middleware\EntradaCheckItens::class,
+        'entrada.check.lote' => \Estoque\Http\Middleware\EntradaCheckLote::class,
+        'entrada.check.valor.nota' => \Estoque\Http\Middleware\EntradaCheckValorNota::class,
     ];
 }

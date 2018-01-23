@@ -13,8 +13,8 @@ class EntradasProdutosRequest extends FormRequest {
         return [
             'numero_lote' => 'nullable|string|max:200',
             'vencimento_lote' => 'nullable|string',
-            'quantidade' => 'required',
-            'valor_unitario' => 'required|regex:/^\d*(\.\d{1,4})?$/'
+            'quantidade' => 'required|numeric|between:0.00001,99999999999.9999',
+            'valor_unitario' => 'required|numeric|between:0.00001,99999999999.9999'
         ];
     }
 
@@ -22,7 +22,9 @@ class EntradasProdutosRequest extends FormRequest {
         return [
             'numero_lote.max' => 'O campo número do lote não pode ser superior a 200 caracteres.',
             'quantidade.required' => 'O campo quantidade é obrigatório.',
+            'quantidade.between' => 'O quantidade é obrigatório.',
             'valor_unitario.required' => 'O campo valor unitário é obrigatório.',
+            'valor_unitario.between' => 'O campo valor unitário é obrigatório.',
         ];
     }
 }
