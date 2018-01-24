@@ -206,6 +206,39 @@
             $(this).prop('disabled', false).html('Adicionar <i class="fa fa-check"></i>');
         }
     });
+
+    $('#btn_form_entradas_end').click(function(e) {
+        e.preventDefault();
+        var form = $(this).parent();
+        form.find('button').prop('disabled', true);
+
+        swal({
+            title: 'Finalizar Entrada',
+            text: 'Atenção! Você está prestes a finalizar esta entrada. Tem certeza?', 
+            icon: 'warning',
+            buttons: true,
+            buttons: ['Cancelar', 'Sim. Finalizar']
+        }).then((willFinalize) => {
+            if (willFinalize) {
+                swal('Aguarde... a entrada está sendo finalizada!', {
+                    title: 'Pronto!',
+                    icon: 'success',
+                    buttons: false
+                });
+
+                setTimeout(function() {
+                    form.submit();
+                }, 2000);
+            } else {
+                swal('Entrada não finalizada!', {
+                    title: 'Cancelado!',
+                    icon: 'success',
+                });
+
+                form.find('button').prop('disabled', false);
+            }
+        });
+    });
 </script>
 
 <script src="{{ asset('/js/modal-excluir.js') }}"></script>

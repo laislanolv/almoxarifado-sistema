@@ -15,25 +15,19 @@
 Route::get('/', 'HomeController@index');
 
 // Tipos de Usuários
-Route::resource('tipos-usuarios', 'UsuariosTiposController', ['parameters' => [
-    'tipos-usuarios' => 'tipo'
-]]);
+Route::resource('tipos-usuarios', 'UsuariosTiposController', ['parameters' => ['tipos-usuarios' => 'tipo']]);
 
 // Usuários
 Route::resource('usuarios', 'UsuariosController');
 
 // Tipos de Usuários
-Route::resource('fontes-recursos', 'FontesRecursosController', ['parameters' => [
-    'fontes-recursos' => 'fonte'
-]]);
+Route::resource('fontes-recursos', 'FontesRecursosController', ['parameters' => ['fontes-recursos' => 'fonte']]);
 
 // Departamentos
 Route::resource('departamentos', 'DepartamentosController');
 
 // Setores
-Route::resource('setores', 'SetoresController', ['parameters' => [
-    'setores' => 'setor'
-]]);
+Route::resource('setores', 'SetoresController', ['parameters' => ['setores' => 'setor']]);
 
 // Marcas
 Route::resource('marcas', 'MarcasController');
@@ -53,21 +47,16 @@ Route::group(['prefix' => 'entradas'], function () {
     Route::get('/{entrada}/add-item', ['as' => 'entradas.add-item.create', 'uses' => 'EntradasController@createItem']);
     Route::post('/{entrada}/add-item', ['as' => 'entradas.add-item.store', 'uses' => 'EntradasController@storeItem']);
     Route::delete('/{entrada}/del-item', ['as' => 'entradas.del-item.destroy', 'uses' => 'EntradasController@destroyItem']);
-    Route::post('/{entrada}/end', ['as' => 'entradas.end.create', 'uses' => 'EntradasController@createEnd']);
     Route::match(['put', 'patch'], '/{entrada}/end', ['as' => 'entradas.end.store', 'uses' => 'EntradasController@storeEnd']);
     Route::match(['put', 'patch'], '/{entrada}/del-attachment', ['as' => 'entradas.del-attachment.destroy', 'uses' => 'EntradasController@destroyAttachment']);
 });
 Route::resource('entradas', 'EntradasController');
 
 // Organizações
-Route::resource('organizacoes', 'OrganizacoesController', ['parameters' => [
-    'organizacoes' => 'organizacao'
-]]);
+Route::resource('organizacoes', 'OrganizacoesController', ['parameters' => ['organizacoes' => 'organizacao']]);
 
 // Fornecedores
-Route::resource('fornecedores', 'FornecedoresController', ['parameters' => [
-    'fornecedores' => 'fornecedor'
-]]);
+Route::resource('fornecedores', 'FornecedoresController', ['parameters' => ['fornecedores' => 'fornecedor']]);
 
 // Cidades
 Route::get('cidades/{estado}', ['as' => 'cidades.show', 'uses' => 'CidadesController@getCidades']);

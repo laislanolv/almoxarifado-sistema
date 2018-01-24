@@ -52,10 +52,10 @@
                 <p><b>Itens da Nota</b></p>
             </div>
             <div class="stepwizard-step">
-                {!! Form::open(['method' => 'post', 'route' => ['entradas.end.create', $entrada->id], 'style'=>'display: inline']) !!}
+                {!! Form::open(['method' => 'patch', 'route' => ['entradas.end.store', $entrada->id], 'style'=>'display: inline']) !!}
                 {!! Form::hidden('valor_total_nota') !!}
                 {!! Form::hidden('quantidade_itens_nota') !!}
-                {!! Form::button('<i class="fa fa-check"></i>', ['type' => 'submit', 'class' => 'btn btn-default btn-circle']) !!}
+                {!! Form::button('<i class="fa fa-check"></i>', ['id' => 'btn_form_entradas_end', 'class' => 'btn btn-default btn-circle']) !!}
                 {!! Form::close() !!}
                 <p><b>Finalizar Entrada</b></p>
             </div>

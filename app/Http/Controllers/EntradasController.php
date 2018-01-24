@@ -16,9 +16,9 @@ use Estoque\Http\Requests\EntradasRequest;
 class EntradasController extends Controller {
     public function __construct() {
         $this->middleware('entrada.check.nota')->except(['index', 'store', 'create', 'show']);
-        $this->middleware('entrada.check.itens')->only(['createEnd', 'storeEnd']);
+        $this->middleware('entrada.check.itens')->only(['storeEnd']);
         $this->middleware('entrada.check.lote')->only('storeItem');
-        $this->middleware('entrada.check.valor.nota')->only(['createEnd', 'storeEnd']);;
+        $this->middleware('entrada.check.valor.nota')->only(['storeEnd']);;
     }
 
     public function index() {
@@ -75,10 +75,6 @@ class EntradasController extends Controller {
         $entrada->anexo_nota = null;
         $entrada->save();
         $request->session()->put('success', 'Anexo deletado!');
-    }
-
-    public function createEnd(Entrada $entrada) {
-        return view('entradas.end', compact('entrada'));
     }
 
     public function storeEnd(Entrada $entrada) {
