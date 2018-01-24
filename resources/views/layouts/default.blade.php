@@ -11,6 +11,7 @@
         <link href="{{ asset('/libs/bootstrap-datepicker/css/bootstrap-datepicker3.min.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/stepwizard.css') }}" rel="stylesheet">
         <link href="{{ asset('/css/swal.css') }}" rel="stylesheet">
+        <link href="{{ asset('/css/custom.css') }}" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.min.js"></script>
@@ -30,6 +31,7 @@
                         <a href="/" class="navbar-brand">Início</a>
                         <a href="{{ route('usuarios.index') }}" class="navbar-brand">Usuários</a>
                         <a href="{{ route('fontes-recursos.index') }}" class="navbar-brand">Fontes de Recursos</a>
+                        <a href="{{ route('almoxarifados.index') }}" class="navbar-brand">Almoxarifados</a>
                         <a href="{{ route('departamentos.index') }}" class="navbar-brand">Departamentos</a>
                         <a href="{{ route('setores.index') }}" class="navbar-brand">Setores</a>
                         <a href="{{ route('marcas.index') }}" class="navbar-brand">Marcas</a>

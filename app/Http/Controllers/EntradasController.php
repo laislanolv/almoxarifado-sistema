@@ -3,7 +3,7 @@
 namespace Estoque\Http\Controllers;
 
 use Estoque\Usuario;
-use Estoque\Departamento;
+use Estoque\Almoxarifado;
 use Estoque\Fornecedor;
 use Estoque\FonteRecurso;
 use Estoque\Produto;
@@ -27,11 +27,11 @@ class EntradasController extends Controller {
     }
 
     public function create() {
-        $departamentos = Departamento::pluck('nome', 'id');
+        $almoxarifados = Almoxarifado::pluck('nome', 'id');
         $fornecedores = Fornecedor::pluck('nome_fantasia', 'id');
         $fontes_recursos = FonteRecurso::pluck('nome', 'id');
         $produtos = Produto::pluck('nome', 'id');
-        return view('entradas.create', compact('departamentos', 'fornecedores', 'fontes_recursos', 'produtos'));
+        return view('entradas.create', compact('almoxarifados', 'fornecedores', 'fontes_recursos', 'produtos'));
     }
 
     public function store(EntradasRequest $request) {
@@ -88,10 +88,10 @@ class EntradasController extends Controller {
     }
 
     public function edit(Entrada $entrada) {
-        $departamentos = Departamento::pluck('nome', 'id');
+        $almoxarifados = Almoxarifado::pluck('nome', 'id');
         $fornecedores = Fornecedor::pluck('nome_fantasia', 'id');
         $fontes_recursos = FonteRecurso::pluck('nome', 'id');
-        return view('entradas.edit', compact('departamentos', 'fornecedores', 'fontes_recursos', 'entrada'));
+        return view('entradas.edit', compact('almoxarifados', 'fornecedores', 'fontes_recursos', 'entrada'));
     }
 
     public function update(EntradasRequest $request, Entrada $entrada) {

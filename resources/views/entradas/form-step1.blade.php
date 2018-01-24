@@ -8,8 +8,8 @@
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
-                <strong>Departamento:</strong>
-                {!! Form::select('id_departamento', $departamentos, isset($entrada) ? $entrada->id_departamento : null, ['placeholder' => 'Selecione o Departamento', 'class' => 'form-control']) !!}
+                <strong>Almoxarifado:</strong>
+                {!! Form::select('id_almoxarifado', $almoxarifados, isset($entrada) ? $entrada->id_almoxarifado : null, ['placeholder' => 'Selecione o Almoxxarifado', 'class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

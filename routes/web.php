@@ -23,6 +23,9 @@ Route::resource('usuarios', 'UsuariosController');
 // Tipos de Usuários
 Route::resource('fontes-recursos', 'FontesRecursosController', ['parameters' => ['fontes-recursos' => 'fonte']]);
 
+// Almoxarifados
+Route::resource('almoxarifados', 'AlmoxarifadosController');
+
 // Departamentos
 Route::resource('departamentos', 'DepartamentosController');
 

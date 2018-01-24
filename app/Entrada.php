@@ -14,7 +14,7 @@ class Entrada extends Model {
     protected $fillable = [
         'id_usuario',
         'id_departamento',
-        'id_fornecedor',
+        'id_almoxarifado',
         'id_fonte_recurso',
         'data',
         'numero_nota',

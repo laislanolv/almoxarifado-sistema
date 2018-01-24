@@ -12,7 +12,7 @@ class EntradasRequest extends FormRequest {
     public function rules() {
         return [
             'id_usuario' => 'required|integer',
-            'id_departamento' => 'required|integer',
+            'id_almoxarifado' => 'required|integer',
             'id_fornecedor' => 'required|integer',
             'id_fonte_recurso' => 'required|integer',
             'data' => 'required|string',
@@ -27,7 +27,7 @@ class EntradasRequest extends FormRequest {
     public function messages() {
         return [
             'id_usuario.required' => 'O campo usuário é obrigatório.',
-            'id_departamento.required' => 'O campo departamento é obrigatório.',
+            'id_almoxarifado.required' => 'O campo almoxarifado é obrigatório.',
             'id_fornecedor.required' => 'O campo fornecedor é obrigatório.',
             'id_fonte_recurso.required' => 'O campo fonte de recurso é obrigatório.',
             'numero_nota.required' => 'O campo número da nota é obrigatório.',

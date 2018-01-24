@@ -42,4 +42,8 @@ class Produto extends Model {
     public function entradas() {
         return $this->belongsToMany('Estoque\Entrada', 'entradas_produtos', 'id_produto', 'id_entrada');
     }
+
+    public function saidas() {
+        return $this->belongsToMany('Estoque\Saida', 'saidas_produtos', 'id_produto', 'id_saida');
+    }
 }
