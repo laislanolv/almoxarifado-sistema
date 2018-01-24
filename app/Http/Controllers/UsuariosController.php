@@ -5,7 +5,6 @@ namespace Estoque\Http\Controllers;
 use Estoque\UsuarioTipo;
 use Estoque\Organizacao;
 use Estoque\Departamento;
-use Estoque\UsuarioDepartamento;
 
 use Estoque\Usuario;
 use Illuminate\Http\Request;
@@ -28,19 +27,8 @@ class UsuariosController extends Controller {
         $data = $request->all();
         $data['senha'] = Usuario::encryptSenha($request->senha);
         $usuario = Usuario::create($data);
-        $this->storeDepartamentos($usuario, $data['departamentos']);
+        $usuario->departamentos()->attach($data['departamentos']);
         return redirect()->route('usuarios.index')->with('success', 'Cadastrado com sucesso!');
-    }
-
-    public function storeDepartamentos($usuario, $departamentos) {
-        $data = [];
-
-        foreach($departamentos as $key => $val) {
-            $data[$key] = ['id_usuario' => $usuario->id, 'id_departamento' => $val];
-        }
-
-        UsuarioDepartamento::where('id_usuario', $usuario->id)->delete();
-        UsuarioDepartamento::insert($data);
     }
 
     public function show(Usuario $usuario) {
@@ -59,20 +47,20 @@ class UsuariosController extends Controller {
     public function update(UsuariosRequest $request, Usuario $usuario) {
         $data = $request->all();
 
-        if ($request->senha == null) {
-            unset($data['senha']);
-        } else {
+        if ($request->senha) {
             $data['senha'] = Usuario::encryptSenha($request->senha);
+        } else {
+            unset($data['senha']);            
         }
 
         $usuario->update($data);
-        $this->storeDepartamentos($usuario, $data['departamentos']);
+        $usuario->departamentos()->sync($data['departamentos']);
         return redirect()->route('usuarios.index')->with('success', 'Editado com sucesso!');
     }
 
-    public function destroy($id) {
-        UsuarioDepartamento::where('id_usuario', $id)->delete();
-        Usuario::destroy($id);
+    public function destroy(Usuario $usuario) {
+        $usuario->departamentos()->detach();
+        $usuario->delete();
         return redirect()->route('usuarios.index')->with('success', 'Deletado com sucesso!');
     }
 }

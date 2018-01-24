@@ -66,7 +66,7 @@ class EntradasController extends Controller {
     }
 
     public function destroyItem(Request $request, Entrada $entrada) {
-        $entrada->produtos()->wherePivot('id', $request->id_item)->detach();
+        $entrada->produtos()->detach($request->id_produto);
         return redirect()->route('entradas.add-item.create', $entrada->id)->with('success', 'Produto deletado!');
     }
 
