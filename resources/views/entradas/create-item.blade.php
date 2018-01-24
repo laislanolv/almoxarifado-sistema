@@ -18,6 +18,11 @@
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
                 <h2>Editar Entrada</h2>
+                <h3>Dados na Nota:</h3>
+                <h4>
+                    <span class="label label-default label-valor-nota"></span>
+                    <span class="label label-default label-quantidade-itens"></span>
+                </h4>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('entradas.index') }}">Voltar</a>

@@ -115,7 +115,13 @@
         $('input[name=valor_total_nota]').val(soma);
         $('.numero-total-itens').text(numero_total_itens);
         $('input[name=quantidade_itens_nota]').val(numero_total_itens);
+
+        var label_valor_nota = parseFloat('{{$entrada->valor_nota}}');
+        $('.label-valor-nota').text('Valor Total: ' + label_valor_nota.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 4 }).replace("R$", "R$ "));
         
+        var label_quantidade_itens = parseInt('{{$entrada->quantidade_itens_nota}}');
+        $('.label-quantidade-itens').text('Quantidade de Itens: ' + label_quantidade_itens + ' itens');
+
         $('#produtos').select2({
             placeholder: 'Selecione o Produto',
             minimumInputLength: 1,
