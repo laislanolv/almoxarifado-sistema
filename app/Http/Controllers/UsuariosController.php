@@ -50,7 +50,7 @@ class UsuariosController extends Controller {
         if ($request->senha) {
             $data['senha'] = Usuario::encryptSenha($request->senha);
         } else {
-            unset($data['senha']);            
+            unset($data['senha']);
         }
 
         $usuario->update($data);
