@@ -61,7 +61,7 @@
 
 @if($usuarios->total() > 0)
     @section('scripts')
-        <script src="{{ asset('/js/modal-excluir.js') }}"></script>
+        {!! Html::script('js/modal-excluir.js') !!}
     @endsection
 @endif
 
