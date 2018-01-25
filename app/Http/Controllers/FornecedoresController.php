@@ -20,7 +20,7 @@ class FornecedoresController extends Controller {
     }
 
     public function store(FornecedoresRequest $request) {
-        Fornecedor::create($request->except(['estado, cidade']));
+        Fornecedor::create($request->except('estado'));
         return redirect()->route('fornecedores.index')->with('success', 'Cadastrado com sucesso!');
     }
 
@@ -34,7 +34,7 @@ class FornecedoresController extends Controller {
     }
 
     public function update(FornecedoresRequest $request, Fornecedor $fornecedor) {
-        $fornecedor->update($request->all());
+        $fornecedor->update($request->except('estado'));
         return redirect()->route('fornecedores.index')->with('success', 'Editado com sucesso!');
     }
 

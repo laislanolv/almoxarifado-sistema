@@ -20,7 +20,7 @@ class OrganizacoesController extends Controller {
     }
 
     public function store(OrganizacoesRequest $request) {
-        Organizacao::create($request->except(['estado, cidade']));
+        Organizacao::create($request->except('estado'));
         return redirect()->route('organizacoes.index')->with('success', 'Cadastrado com sucesso!');
     }
 
@@ -34,7 +34,7 @@ class OrganizacoesController extends Controller {
     }
 
     public function update(OrganizacoesRequest $request, Organizacao $organizacao) {
-        $organizacao->update($request->all());
+        $organizacao->update($request->except('estado'));
         return redirect()->route('organizacoes.index')->with('success', 'Editado com sucesso!');
     }
 

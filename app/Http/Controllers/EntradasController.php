@@ -30,8 +30,7 @@ class EntradasController extends Controller {
         $almoxarifados = Almoxarifado::pluck('nome', 'id');
         $fornecedores = Fornecedor::pluck('nome_fantasia', 'id');
         $fontes_recursos = FonteRecurso::pluck('nome', 'id');
-        $produtos = Produto::pluck('nome', 'id');
-        return view('entradas.create', compact('almoxarifados', 'fornecedores', 'fontes_recursos', 'produtos'));
+        return view('entradas.create', compact('almoxarifados', 'fornecedores', 'fontes_recursos'));
     }
 
     public function store(EntradasRequest $request) {

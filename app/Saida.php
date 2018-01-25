@@ -13,6 +13,7 @@ class Saida extends Model {
 
     protected $fillable = [
         'id_usuario',
+        'id_almoxarifado',
         'id_setor',
         'id_fonte_recurso',
         'data',
@@ -22,6 +23,10 @@ class Saida extends Model {
 
     public static function formatData($data) {
         return Carbon::createFromFormat('d/m/Y', $data)->toDateString();
+    }
+
+    public function setor() {
+        return $this->belongsTo('Estoque\Setor', 'id_setor');
     }
 
     public function produtos() {

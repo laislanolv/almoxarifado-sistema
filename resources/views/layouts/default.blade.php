@@ -39,6 +39,7 @@
                         <a href="{{ route('categorias.index') }}" class="navbar-brand">Categorias</a>
                         <a href="{{ route('produtos.index') }}" class="navbar-brand">Produtos</a>
                         <a href="{{ route('entradas.index') }}" class="navbar-brand">Entradas</a>
+                        <a href="{{ route('saidas.index') }}" class="navbar-brand">Saídas</a>
                         <a href="{{ route('fornecedores.index') }}" class="navbar-brand">Fornecedores</a>
                         <a href="{{ route('organizacoes.index') }}" class="navbar-brand">Organizações</a>
                     </section>

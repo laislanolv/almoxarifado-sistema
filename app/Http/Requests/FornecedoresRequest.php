@@ -3,6 +3,7 @@
 namespace Estoque\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class FornecedoresRequest extends FormRequest {
     public function authorize() {

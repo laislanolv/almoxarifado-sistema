@@ -13,6 +13,10 @@ class Departamento extends Model {
         'nome',
         'status'
     ];
+
+    public function setores() {
+        return $this->hasMany('Estoque\Setor', 'id_departamento');
+    }
     
     public function usuarios() {
         return $this->belongsToMany('Estoque\Usuario', 'usuarios_departamentos', 'id_departamento', 'id_usuario');

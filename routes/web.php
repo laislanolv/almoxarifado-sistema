@@ -55,11 +55,17 @@ Route::group(['prefix' => 'entradas'], function () {
 });
 Route::resource('entradas', 'EntradasController');
 
+// Saídas
+Route::group(['prefix' => 'saidas'], function () {
+    Route::get('/{saida}/add-item', 'SaidasController@createItem')->name('saidas.add-item.create');
+    Route::post('/{saida}/add-item', 'SaidasController@storeItem')->name('saidas.add-item.store');
+    Route::delete('/{saida}/del-item', 'SaidasController@destroyItem')->name('saidas.del-item.destroy');
+    Route::match(['put', 'patch'], '/{saida}/end', 'SaidasController@storeEnd')->name('saidas.end.store');
+});
+Route::resource('saidas', 'SaidasController');
+
 // Organizações
 Route::resource('organizacoes', 'OrganizacoesController', ['parameters' => ['organizacoes' => 'organizacao']]);
 
 // Fornecedores
 Route::resource('fornecedores', 'FornecedoresController', ['parameters' => ['fornecedores' => 'fornecedor']]);
-
-// Cidades
-Route::get('cidades/{estado}', 'CidadesController')->name('cidades.show');

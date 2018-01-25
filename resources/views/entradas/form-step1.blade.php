@@ -57,7 +57,7 @@
                     <br>
                     <a href="{{ asset('uploads/notas/$entrada->anexo_nota') }}" target="_blank"><i class="fa fa-file-text-o"></i> <b>Abir Nota Fiscal anexada</b></a>
                     <b>/</b>
-                    <a href="#" id="deletar_nota" class="text-danger">(deletar o anexo)</a>
+                    <a href="#" id="deletar_anexo" class="text-danger">(deletar o anexo)</a>
                 @endif
             </div>
         </div>
@@ -83,7 +83,7 @@
 @endif
 @if (isset($entrada))
     <script>
-        $('#deletar_nota').click(function(e) {
+        $('#deletar_anexo').click(function(e) {
             e.preventDefault();
     
             swal({

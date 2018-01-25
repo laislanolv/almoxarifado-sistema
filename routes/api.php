@@ -12,3 +12,9 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+// Setores
+Route::get('{departamento}/setores', 'Api\SetoresController')->name('api.setores.show');
+
+// Cidades
+Route::get('{estado}/cidades', 'Api\CidadesController')->name('api.cidades.show');

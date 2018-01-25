@@ -86,6 +86,7 @@
                     <a href="{{ route('categorias.index') }}">Categorias</a>
                     <a href="{{ route('produtos.index') }}">Produtos</a>
                     <a href="{{ route('entradas.index') }}">Entradas</a>
+                    <a href="{{ route('saidas.index') }}">Saídas</a>
                     <a href="{{ route('fornecedores.index') }}">Fornecedores</a>
                     <a href="{{ route('organizacoes.index') }}">Organizações</a>
                 </div>

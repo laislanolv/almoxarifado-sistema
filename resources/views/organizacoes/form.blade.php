@@ -45,7 +45,7 @@
         $('select[name=id_cidade]').append('<option value="">Carregando...</option>');
         
         setTimeout(function() {
-            $.get('/cidades/' + id_estado, function(cidades) {
+            $.get('/api/' + id_estado + '/cidades/', function(cidades) {
                 $('select[name=id_cidade]').empty();
                 $('select[name=id_cidade]').append('<option value="">Selecione a Cidade</option>');
 
