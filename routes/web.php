@@ -42,7 +42,7 @@ Route::resource('unidades', 'UnidadeMedidasController');
 Route::resource('categorias', 'CategoriasController');
 
 // Produtos
-Route::get('produtos/find', ['as' => 'produtos.find', 'uses' => 'ProdutosController@find']);
+Route::get('produtos/find', 'ProdutosController@find')->name('produtos.find');
 Route::resource('produtos', 'ProdutosController');
 
 // Entradas
@@ -62,4 +62,4 @@ Route::resource('organizacoes', 'OrganizacoesController', ['parameters' => ['org
 Route::resource('fornecedores', 'FornecedoresController', ['parameters' => ['fornecedores' => 'fornecedor']]);
 
 // Cidades
-Route::get('cidades/{estado}', ['as' => 'cidades.show', 'uses' => 'CidadesController']);
+Route::get('cidades/{estado}', 'CidadesController')->name('cidades.show');
