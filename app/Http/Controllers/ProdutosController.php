@@ -54,10 +54,10 @@ class ProdutosController extends Controller {
         $termo = $request->produto;
 
         if (empty($termo)) {
-            return Response::json([]);
+            return Response::json([], 200);
         }
 
         $produtos = Produto::with('unidadeEntrada')->orderBy('nome', 'asc')->where('nome', 'like', "%$termo%")->get();
-        return Response::json($produtos);
+        return Response::json($produtos, 200);
     }
 }

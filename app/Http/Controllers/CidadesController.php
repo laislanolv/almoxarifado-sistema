@@ -10,6 +10,6 @@ use Illuminate\Support\Facades\Response;
 class CidadesController extends Controller {
     public function __invoke(Estado $estado) {
         $cidades = $estado->cidades()->get();
-        return Response::json($cidades);
+        return Response::json($cidades, 200);
     }
 }
