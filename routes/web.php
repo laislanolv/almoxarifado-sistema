@@ -12,7 +12,7 @@
 */
 
 // Welcome
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController');
 
 // Tipos de Usuários
 Route::resource('tipos-usuarios', 'UsuariosTiposController', ['parameters' => ['tipos-usuarios' => 'tipo']]);
@@ -62,4 +62,4 @@ Route::resource('organizacoes', 'OrganizacoesController', ['parameters' => ['org
 Route::resource('fornecedores', 'FornecedoresController', ['parameters' => ['fornecedores' => 'fornecedor']]);
 
 // Cidades
-Route::get('cidades/{estado}', ['as' => 'cidades.show', 'uses' => 'CidadesController@getCidades']);
+Route::get('cidades/{estado}', ['as' => 'cidades.show', 'uses' => 'CidadesController']);
