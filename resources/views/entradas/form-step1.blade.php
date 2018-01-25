@@ -1,5 +1,5 @@
 <div class="row">
-    <div id="step1" class="row setup-content" style="margin-top: 20px;">
+    <div id="step1" class="row setup-content">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Usuário:</strong>
@@ -9,7 +9,7 @@
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
                 <strong>Almoxarifado:</strong>
-                {!! Form::select('id_almoxarifado', $almoxarifados, isset($entrada) ? $entrada->id_almoxarifado : null, ['placeholder' => 'Selecione o Almoxxarifado', 'class' => 'form-control']) !!}
+                {!! Form::select('id_almoxarifado', $almoxarifados, isset($entrada) ? $entrada->id_almoxarifado : null, ['placeholder' => 'Selecione o Almoxarifado', 'class' => 'form-control']) !!}
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">

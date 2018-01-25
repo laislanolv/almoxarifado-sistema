@@ -8,6 +8,7 @@ use Estoque\UnidadeMedida;
 
 use Estoque\Produto;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 use Estoque\Http\Requests\ProdutosRequest;
 
 class ProdutosController extends Controller {
@@ -53,10 +54,10 @@ class ProdutosController extends Controller {
         $termo = $request->produto;
 
         if (empty($termo)) {
-            return response()->json([]);
+            return Response::json([]);
         }
 
-        $produtos = Produto::with('unidadeEntrada')->orderBy('nome', 'asc')->where('nome', 'like', "%$termo%")->limit(10)->get();
-        return response()->json($produtos);
+        $produtos = Produto::with('unidadeEntrada')->orderBy('nome', 'asc')->where('nome', 'like', "%$termo%")->get();
+        return Response::json($produtos);
     }
 }

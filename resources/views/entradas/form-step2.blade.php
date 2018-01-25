@@ -1,19 +1,21 @@
-<div id="step2" class="row setup-content" style="margin-top: 20px;">
+<div id="step2" class="row setup-content">
     {!! Form::open(array('id' => 'form_entradas_step2', 'method' => 'post', 'route' => ['entradas.add-item.store', $entrada->id])) !!}
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="col-xs-2 col-sm-2 col-md-2">
+            <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Produto:</strong>
                     {!! Form::select('id_produto', [], null, ['placeholder' => 'Selecione o Produto', 'id' => 'produtos', 'class' => 'form-control', 'style' => 'width: 100%;', 'required' => 'required']) !!}
                 </div>
             </div>
-            <div class="col-xs-2 col-sm-2 col-md-2">
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="col-xs-3 col-sm-3 col-md-3">
                 <div class="form-group">
                     <strong>Número do Lote:</strong>
                     {!! Form::text('numero_lote', null, ['id' => 'numero_lote', 'class' => 'form-control']) !!}
                 </div>
             </div>
-            <div class="col-xs-2 col-sm-2 col-md-2">
+            <div class="col-xs-3 col-sm-3 col-md-3">
                 <div class="form-group">
                     <strong>Vencimento do Lote:</strong>
                     {!! Form::text('vencimento_lote', null, ['id' => 'vencimento_lote', 'class' => 'form-control data']) !!}
@@ -31,8 +33,8 @@
                     {!! Form::text('valor_unitario', null, ['id' => 'valor_unitario', 'maxlength' => '21', 'class' => 'form-control real', 'required' => 'required']) !!}
                 </div>
             </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 text-center">
-                {!! Form::button('Adicionar <i class="fa fa-check"></i>', ['type' => 'button', 'id' => 'btn-submit-step2', 'class' => 'btn btn-default', 'style' => 'margin-top: 20px;']) !!}
+            <div class="col-xs-2 col-sm-2 col-md-2 text-right">
+                {!! Form::button('Adicionar Produto <i class="fa fa-check"></i>', ['type' => 'button', 'id' => 'btn-submit-step2', 'class' => 'btn btn-default', 'style' => 'margin-top: 20px;']) !!}
             </div>
         </div>
     {!! Form::close() !!}
@@ -203,7 +205,7 @@
             $('input[name=quantidade]').val($('#quantidade').maskMoney('unmasked')[0]);
             $('#form_entradas_step2').submit();
         } else {
-            $(this).prop('disabled', false).html('Adicionar <i class="fa fa-check"></i>');
+            $(this).prop('disabled', false).html('Adicionar Produto <i class="fa fa-check"></i>');
         }
     });
 
