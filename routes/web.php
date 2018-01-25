@@ -12,7 +12,7 @@
 */
 
 // Welcome
-Route::get('/', 'HomeController@index');
+Route::get('/', 'HomeController');
 
 // Tipos de Usuários
 Route::resource('tipos-usuarios', 'UsuariosTiposController', ['parameters' => ['tipos-usuarios' => 'tipo']]);
@@ -42,16 +42,16 @@ Route::resource('unidades', 'UnidadeMedidasController');
 Route::resource('categorias', 'CategoriasController');
 
 // Produtos
-Route::get('produtos/find', ['as' => 'produtos.find', 'uses' => 'ProdutosController@find']);
+Route::get('produtos/find', 'ProdutosController@find')->name('produtos.find');
 Route::resource('produtos', 'ProdutosController');
 
 // Entradas
 Route::group(['prefix' => 'entradas'], function () {
-    Route::get('/{entrada}/add-item', ['as' => 'entradas.add-item.create', 'uses' => 'EntradasController@createItem']);
-    Route::post('/{entrada}/add-item', ['as' => 'entradas.add-item.store', 'uses' => 'EntradasController@storeItem']);
-    Route::delete('/{entrada}/del-item', ['as' => 'entradas.del-item.destroy', 'uses' => 'EntradasController@destroyItem']);
-    Route::match(['put', 'patch'], '/{entrada}/end', ['as' => 'entradas.end.store', 'uses' => 'EntradasController@storeEnd']);
-    Route::match(['put', 'patch'], '/{entrada}/del-attachment', ['as' => 'entradas.del-attachment.destroy', 'uses' => 'EntradasController@destroyAttachment']);
+    Route::get('/{entrada}/add-item', 'EntradasController@createItem')->name('entradas.add-item.create');
+    Route::post('/{entrada}/add-item', 'EntradasController@storeItem')->name('entradas.add-item.store');
+    Route::delete('/{entrada}/del-item', 'EntradasController@destroyItem')->name('entradas.del-item.destroy');
+    Route::match(['put', 'patch'], '/{entrada}/end', 'EntradasController@storeEnd')->name('entradas.end.store');
+    Route::match(['put', 'patch'], '/{entrada}/del-attachment', 'EntradasController@destroyAttachment')->name('entradas.del-attachment.destroy');
 });
 Route::resource('entradas', 'EntradasController');
 
@@ -62,4 +62,4 @@ Route::resource('organizacoes', 'OrganizacoesController', ['parameters' => ['org
 Route::resource('fornecedores', 'FornecedoresController', ['parameters' => ['fornecedores' => 'fornecedor']]);
 
 // Cidades
-Route::get('cidades/{estado}', ['as' => 'cidades.show', 'uses' => 'CidadesController@getCidades']);
+Route::get('cidades/{estado}', 'CidadesController')->name('cidades.show');
