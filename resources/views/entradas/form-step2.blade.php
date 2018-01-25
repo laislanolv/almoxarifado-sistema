@@ -198,7 +198,7 @@
     });
 
     $('#btn-submit-step2').click(function(e) {
-        $(this).prop('disabled', true).html('Aguarde...');
+        $(this).prop('disabled', true).html('Aguarde um pouco...');
 
         if ($('#form_entradas_step2').valid()) {
             $('input[name=valor_unitario]').val($('#valor_unitario').maskMoney('unmasked')[0]);
