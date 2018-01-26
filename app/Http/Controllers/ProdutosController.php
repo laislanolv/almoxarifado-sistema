@@ -8,7 +8,6 @@ use Estoque\UnidadeMedida;
 
 use Estoque\Produto;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Response;
 use Estoque\Http\Requests\ProdutosRequest;
 
 class ProdutosController extends Controller {
@@ -48,16 +47,5 @@ class ProdutosController extends Controller {
     public function destroy($id) {
         Produto::destroy($id);
         return redirect()->route('produtos.index')->with('success', 'Deletado com sucesso!');
-    }
-
-    public function find(Request $request) {
-        $termo = $request->produto;
-
-        if (empty($termo)) {
-            return Response::json([], 200);
-        }
-
-        $produtos = Produto::with('unidadeEntrada')->orderBy('nome', 'asc')->where('nome', 'like', "%$termo%")->get();
-        return Response::json($produtos, 200);
     }
 }

@@ -1,33 +1,21 @@
 <div id="step2" class="row setup-content">
-    {!! Form::open(array('id' => 'form_entradas_step2', 'method' => 'post', 'route' => ['entradas.add-item.store', $entrada->id])) !!}
+    {!! Form::open(array('id' => 'form_saidas_step2', 'method' => 'post', 'route' => ['saidas.add-item.store', $saida->id])) !!}
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Produto:</strong>
-                    {!! Form::select('id_produto', [], null, ['placeholder' => 'Selecione o Produto', 'id' => 'produtos', 'class' => 'form-control', 'style' => 'width: 100%;', 'required' => 'required']) !!}
+                    {!! Form::select('id_entrada_produto', [], null, ['id' => 'produtos', 'class' => 'form-control', 'style' => 'width: 100%;', 'required' => 'required']) !!}
                 </div>
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="col-xs-3 col-sm-3 col-md-3">
-                <div class="form-group">
-                    <strong>Número do Lote:</strong>
-                    {!! Form::text('numero_lote', null, ['id' => 'numero_lote', 'class' => 'form-control']) !!}
-                </div>
-            </div>
-            <div class="col-xs-3 col-sm-3 col-md-3">
-                <div class="form-group">
-                    <strong>Vencimento do Lote:</strong>
-                    {!! Form::text('vencimento_lote', null, ['id' => 'vencimento_lote', 'class' => 'form-control data']) !!}
-                </div>
-            </div>
-            <div class="col-xs-2 col-sm-2 col-md-2">
+            <div class="col-xs-5 col-sm-5 col-md-5">
                 <div class="form-group">
                     <strong>Quantidade:</strong>
                     {!! Form::text('quantidade', null, ['id' => 'quantidade', 'maxlength' => '15', 'class' => 'form-control quantidade', 'required' => 'required']) !!}
                 </div>
             </div>
-            <div class="col-xs-2 col-sm-2 col-md-2">
+            <div class="col-xs-5 col-sm-5 col-md-5">
                 <div class="form-group">
                     <strong>Valor:</strong>
                     {!! Form::text('valor_unitario', null, ['id' => 'valor_unitario', 'maxlength' => '21', 'class' => 'form-control real', 'required' => 'required']) !!}
@@ -43,8 +31,6 @@
         <table class="table table-striped table-hover">
             <thead>
                 <th>Nome</th>
-                <th>Número do Lote</th>
-                <th>Vencimento do Lote</th>
                 <th class="text-right">Quantidade</th>
                 <th class="text-right">Valor</th>
                 <th class="text-right">Total</th>
@@ -54,13 +40,11 @@
                 @foreach ($itens as $item)
                     <tr>
                         <td>{{ $item->nome }}</td>
-                        <td>{{ $item->pivot->numero_lote ? $item->pivot->numero_lote : '--'}}</td>
-                        <td>{{ $item->pivot->vencimento_lote ? \Carbon\Carbon::parse($item->pivot->vencimento_lote)->format('d/m/Y') : '--' }}</td>
                         <td class="text-right"><span class="quantidade-inserida">{{ $item->pivot->quantidade }}</span</td>
                         <td class="text-right"><span class="valor-unitario">{{ $item->pivot->valor_unitario }}</span></td>
                         <td class="text-right"><span class="valor-total-item"></span></td>
                         <td>
-                            {!! Form::open(['id' => 'form_excluir_' . $item->pivot->id, 'method' => 'delete', 'route' => ['entradas.del-item.destroy', $entrada->id], 'style'=>'display: inline']) !!}
+                            {!! Form::open(['id' => 'form_excluir_' . $item->pivot->id, 'method' => 'delete', 'route' => ['saidas.del-item.destroy', $saida->id], 'style'=>'display: inline']) !!}
                             {!! Form::hidden('id_produto', $item->pivot->id_produto) !!}
                             {!! Form::button('<i class="fa fa-trash"></i>', ['class' => 'btn btn-danger modal-excluir', 'style' => 'padding: 1px 6px;']) !!}
                             {!! Form::close() !!}
@@ -84,6 +68,8 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
+        console.log('{{$saida->data}}');
+
         $('#quantidade, #valor_unitario').val('');
         
         $('.quantidade-inserida').each(function() {
@@ -118,30 +104,41 @@
         $('.numero-total-itens').text(numero_total_itens);
         $('input[name=quantidade_itens_nota]').val(numero_total_itens);
 
-        var label_valor_nota = parseFloat('{{$entrada->valor_nota}}');
+        var label_valor_nota = parseFloat('{{$saida->valor_nota}}');
         $('.label-valor-nota').text('Valor Total: ' + label_valor_nota.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 4 }).replace("R$", "R$ "));
         
-        var label_quantidade_itens = parseInt('{{$entrada->quantidade_itens_nota}}');
+        var label_quantidade_itens = parseInt('{{$saida->quantidade_itens_nota}}');
         $('.label-quantidade-itens').text('Quantidade de Itens: ' + label_quantidade_itens + ' itens');
 
         $('#produtos').select2({
-            placeholder: 'Selecione o Produto',
+            placeholder: 'Nº da Nota | Data da Entrada | Produto | Unidade de Medida | Nº do Lote | Vencimento do Lote | Estoque',
             minimumInputLength: 1,
             ajax: {
-                url: '{{ route("produtos.find") }}',
+                url: '{{ route("api.produtos.saida.find") }}',
                 dataType: 'json',
                 delay: 250,
                 data: function(params) {
                     return {
-                        produto: $.trim(params.term)
+                        nome_produto: $.trim(params.term),
+                        almoxarifado: '{{$saida->id_almoxarifado}}',
+                        fonte_recurso: '{{$saida->id_fonte_recurso}}',
+                        data_saida: '{{$saida->data}}'
                     }
                 },
                 processResults: function(data) {
+                    console.log(data);
+                    
                     return {
                         results: $.map(data, function(produto) {
                             return {
-                                text: produto.nome + ' (' + produto.unidade_entrada.nome + ')',
-                                id: produto.id
+                                text: produto.numero_nota + ' | ' +
+                                    produto.data_entrada + ' | ' + 
+                                    produto.nome_produto + ' | ' +
+                                    produto.unidade_medida + ' | ' +
+                                    produto.numero_lote + ' | ' +
+                                    produto.vencimento_lote + ' | ' +
+                                    produto.quantidade,
+                                id: produto.id_entrada_produto
                             }
                         })
                     }
@@ -150,7 +147,7 @@
             }
         });
 
-        $('#form_entradas_step2').validate({
+        $('#form_saidas_step2').validate({
             rules: {
                 produtos: 'required',
                 quantidade: {
@@ -200,29 +197,29 @@
     $('#btn-submit-step2').click(function(e) {
         $(this).prop('disabled', true).html('Aguarde um pouco...');
 
-        if ($('#form_entradas_step2').valid()) {
+        if ($('#form_saidas_step2').valid()) {
             $('input[name=valor_unitario]').val($('#valor_unitario').maskMoney('unmasked')[0]);
             $('input[name=quantidade]').val($('#quantidade').maskMoney('unmasked')[0]);
-            $('#form_entradas_step2').submit();
+            $('#form_saidas_step2').submit();
         } else {
             $(this).prop('disabled', false).html('Adicionar Produto <i class="fa fa-check"></i>');
         }
     });
 
-    $('#btn_form_entradas_end').click(function(e) {
+    $('#btn_form_saidas_end').click(function(e) {
         e.preventDefault();
         var form = $(this).parent();
         form.find('button').prop('disabled', true);
 
         swal({
             title: 'Finalizar Entrada',
-            text: 'Atenção! Você está prestes a finalizar esta entrada. Tem certeza?', 
+            text: 'Atenção! Você está prestes a finalizar esta saida. Tem certeza?', 
             icon: 'warning',
             buttons: true,
             buttons: ['Cancelar', 'Sim. Finalizar']
         }).then((willFinalize) => {
             if (willFinalize) {
-                swal('Aguarde... a entrada está sendo finalizada!', {
+                swal('Aguarde... a saida está sendo finalizada!', {
                     title: 'Pronto!',
                     icon: 'success',
                     buttons: false

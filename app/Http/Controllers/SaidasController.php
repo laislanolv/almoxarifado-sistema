@@ -35,17 +35,11 @@ class SaidasController extends Controller {
 
     public function createItem(Saida $saida) {
         $itens = $saida->produtos;
-        return view('saidas.create-item', compact('itens', 'saida'));
+        return view('saidas.create-item', compact('almoxarifados', 'fontes_recursos', 'itens', 'saida'));
     }
 
     public function storeItem(SaidasProdutosRequest $request, Saida $saida) {
-        $data = [
-            'numero_lote' => $request->numero_lote,
-            'vencimento_lote' => $request->vencimento_lote ? Saida::formatData($request->vencimento_lote) : null,
-            'quantidade' => $request->quantidade,
-            'valor_unitario' => $request->valor_unitario
-        ];
-
+        $data = ['quantidade' => $request->quantidade];
         $produto = Produto::find($request->id_produto);
         $saida->produtos()->attach($produto->id, $data);
         return redirect()->route('saidas.add-item.create', $saida->id)->with('success', 'Produto inserido!');

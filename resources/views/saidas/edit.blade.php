@@ -39,11 +39,11 @@
     <div class="stepwizard" style="margin-top: 20px;">
         <div class="stepwizard-row setup-panel">
             <div class="stepwizard-step">
-                <a href="#" class="btn btn-primary btn-circle"><i class="fa fa-file-text-o"></i></a>
+                <a href="{{ route('saidas.edit', $saida->id) }}" class="btn btn-primary btn-circle"><i class="fa fa-file-text-o"></i></a>
                 <p><b>Cabeçalho da Saída</b></p>
             </div>
             <div class="stepwizard-step">
-                <a href="#" class="btn btn-default btn-circle"><i class="fa fa-list-ol"></i></a>
+                <a href="{{ route('saidas.add-item.create', $saida->id) }}" class="btn btn-default btn-circle"><i class="fa fa-list-ol"></i></a>
                 <p><b>Itens da Saída</b></p>
             </div>
             <div class="stepwizard-step">

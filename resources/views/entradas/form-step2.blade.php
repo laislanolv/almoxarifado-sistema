@@ -128,7 +128,7 @@
             placeholder: 'Selecione o Produto',
             minimumInputLength: 1,
             ajax: {
-                url: '{{ route("produtos.find") }}',
+                url: '{{ route("api.produtos.entrada.find") }}',
                 dataType: 'json',
                 delay: 250,
                 data: function(params) {
@@ -140,7 +140,7 @@
                     return {
                         results: $.map(data, function(produto) {
                             return {
-                                text: produto.nome + ' (' + produto.unidade_entrada.nome + ')',
+                                text: produto.nome + ' [' + produto.unidade_entrada.nome + ']',
                                 id: produto.id
                             }
                         })

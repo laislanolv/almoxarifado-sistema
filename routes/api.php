@@ -13,8 +13,12 @@ use Illuminate\Http\Request;
 |
 */
 
+// Cidades
+Route::get('{estado}/cidades', 'Api\CidadesController')->name('api.cidades.show');
+
 // Setores
 Route::get('{departamento}/setores', 'Api\SetoresController')->name('api.setores.show');
 
-// Cidades
-Route::get('{estado}/cidades', 'Api\CidadesController')->name('api.cidades.show');
+// Produtos
+Route::get('produtos/entrada/find', 'Api\ProdutosController@getProdutosEntrada')->name('api.produtos.entrada.find');
+Route::get('produtos/saida/find', 'Api\ProdutosController@getProdutosSaida')->name('api.produtos.saida.find');

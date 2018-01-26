@@ -42,7 +42,6 @@ Route::resource('unidades', 'UnidadeMedidasController');
 Route::resource('categorias', 'CategoriasController');
 
 // Produtos
-Route::get('produtos/find', 'ProdutosController@find')->name('produtos.find');
 Route::resource('produtos', 'ProdutosController');
 
 // Entradas
