@@ -27,7 +27,7 @@
             <tbody>
                 @if($saidas->total() == 0)
                     <tr>
-                        <th class="text-center" colspan="4">Nenhuma Entrada encontrada</th>
+                        <th class="text-center" colspan="4">Nenhuma Saída encontrada</th>
                     </tr>
                 @else
                     @foreach ($saidas as $saida)

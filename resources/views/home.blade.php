@@ -76,6 +76,7 @@
                 </div>
 
                 <div class="links">
+                    <a href="{{ route('tipos-usuarios.index') }}">Tipos de Usuários</a>
                     <a href="{{ route('usuarios.index') }}">Usuários</a>
                     <a href="{{ route('fontes-recursos.index') }}">Fontes de Recursos</a>
                     <a href="{{ route('almoxarifados.index') }}">Almoxarifados</a>

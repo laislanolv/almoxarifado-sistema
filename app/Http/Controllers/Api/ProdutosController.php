@@ -65,6 +65,6 @@ class ProdutosController extends Controller {
             ->where('sai.finalizada', '=', '1')
             ->sum('sap.quantidade');
 
-        return $quantidade_entrada->quantidade - (float)$quantide_saida;
+        return (float)($quantidade_entrada->quantidade - (float)$quantide_saida);
     }
 }
