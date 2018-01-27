@@ -62,7 +62,6 @@
                         <td>
                             {!! Form::open(['id' => 'form_excluir_' . $item->pivot->id, 'method' => 'delete', 'route' => ['entradas.del-item.destroy', $entrada->id], 'style'=>'display: inline']) !!}
                             {!! Form::hidden('id_entrada_produto', $item->pivot->id) !!}
-                            {!! Form::hidden('id_produto', $item->pivot->id_produto) !!}
                             {!! Form::button('<i class="fa fa-trash"></i>', ['class' => 'btn btn-danger modal-excluir', 'style' => 'padding: 1px 6px;']) !!}
                             {!! Form::close() !!}
                         </td>
