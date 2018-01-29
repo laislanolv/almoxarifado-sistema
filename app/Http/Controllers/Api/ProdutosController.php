@@ -18,7 +18,7 @@ class ProdutosController extends Controller {
             return Response::json([], 200);
         }
 
-        $produtos = Produto::with('unidadeEntrada')->with('entradas')->orderBy('nome', 'asc')->where('nome', 'like', "%$termo%")->get();
+        $produtos = Produto::with('entradas', 'unidadeEntrada')->where('nome', 'like', "%$termo%")->orderBy('nome', 'asc')->get();
         return Response::json($produtos, 200);
     }
 
@@ -29,7 +29,7 @@ class ProdutosController extends Controller {
         $data_saida = $request->data_saida;
 
         $produtos = DB::table('entradas_produtos as enp')
-            ->select('enp.id as id_entrada_produto', 'ent.numero_nota', 'ent.data as data_entrada', 'pro.nome as nome_produto', 'unm.nome as unidade_medida', 'enp.numero_lote', 'enp.vencimento_lote')
+            ->select('enp.id_produto', 'enp.id as id_entrada_produto', 'enp.numero_lote', 'enp.vencimento_lote', 'ent.numero_nota', 'ent.data as data_entrada', 'pro.nome as nome_produto', 'unm.nome as unidade_medida')
             ->join('entradas as ent', 'enp.id_entrada', '=', 'ent.id')
             ->join('produtos as pro', 'enp.id_produto', '=', 'pro.id')
             ->join('unidade_medidas as unm', 'pro.id_unidade_entrada', '=', 'unm.id')
@@ -56,7 +56,10 @@ class ProdutosController extends Controller {
     }
 
     private function getEstoque($id_produto_entrada) {
-        $quantidade_entrada = DB::table('entradas_produtos as enp')->select('enp.quantidade')->where('id', '=', $id_produto_entrada)->first();
+        $quantidade_entrada = DB::table('entradas_produtos as enp')
+            ->select('enp.quantidade')
+            ->where('enp.id', '=', $id_produto_entrada)
+            ->first();
 
         $quantide_saida = DB::table('saidas_produtos as sap')
             ->select('sap.quantidade')

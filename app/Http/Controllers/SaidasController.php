@@ -6,6 +6,7 @@ use Estoque\Usuario;
 use Estoque\Almoxarifado;
 use Estoque\Departamento;
 use Estoque\FonteRecurso;
+use Estoque\Produto;
 use Estoque\Entrada;
 
 use Estoque\Saida;
@@ -39,7 +40,14 @@ class SaidasController extends Controller {
     }
 
     public function storeItem(SaidasProdutosRequest $request, Saida $saida) {
-        $data = ['quantidade' => $request->quantidade];
+        // Pegar id_entrada_produto do request, fazer uma pesquisa na tabela e retornar id produto
+
+        $data = [
+            'id_entrada_produto' => $request->id_entrada_produto,
+            'id_produto' => $request->id_produto,
+            'quantidade' => $request->quantidade
+        ];
+
         $produto = Produto::find($request->id_produto);
         $saida->produtos()->attach($produto->id, $data);
         return redirect()->route('saidas.add-item.create', $saida->id)->with('success', 'Produto inserido!');

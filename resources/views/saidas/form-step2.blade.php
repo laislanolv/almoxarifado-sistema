@@ -9,19 +9,13 @@
             </div>
         </div>
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="col-xs-5 col-sm-5 col-md-5">
+            <div class="col-xs-3 col-sm-3 col-md-3">
                 <div class="form-group">
                     <strong>Quantidade:</strong>
                     {!! Form::text('quantidade', null, ['id' => 'quantidade', 'maxlength' => '15', 'class' => 'form-control quantidade', 'required' => 'required']) !!}
                 </div>
             </div>
-            <div class="col-xs-5 col-sm-5 col-md-5">
-                <div class="form-group">
-                    <strong>Valor:</strong>
-                    {!! Form::text('valor_unitario', null, ['id' => 'valor_unitario', 'maxlength' => '21', 'class' => 'form-control real', 'required' => 'required']) !!}
-                </div>
-            </div>
-            <div class="col-xs-2 col-sm-2 col-md-2 text-right">
+            <div class="col-xs-9 col-sm-9 col-md-9">
                 {!! Form::button('Adicionar Produto <i class="fa fa-check"></i>', ['type' => 'button', 'id' => 'btn-submit-step2', 'class' => 'btn btn-default', 'style' => 'margin-top: 20px;']) !!}
             </div>
         </div>
@@ -68,8 +62,6 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
-        console.log('{{$saida->data}}');
-
         $('#quantidade, #valor_unitario').val('');
         
         $('.quantidade-inserida').each(function() {

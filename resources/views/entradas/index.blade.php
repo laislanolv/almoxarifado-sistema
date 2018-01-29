@@ -21,7 +21,7 @@
             <thead>
                 <th>ID</th>
                 <th>Número da Nota</th>
-                <th>Data da Nota</th>
+                <th>Data da Entrada</th>
                 <th>Observações</th>
                 <th>Finalizada</th>
                 <th style="width: 20%;">Ações</th>

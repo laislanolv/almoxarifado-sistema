@@ -29,8 +29,7 @@ class Saida extends Model {
         return $this->belongsTo('Estoque\Setor', 'id_setor');
     }
 
-    // TO DO
     public function produtos() {
-        return $this->belongsToMany('Estoque\Produto', 'saidas_produtos', 'id_saida', 'id_entrada_produto')->withPivot('id_saida', 'id_entrada_produto', 'quantidade');
+        return $this->belongsToMany('Estoque\Produto', 'saidas_produtos', 'id_saida', 'id_produto')->withPivot('id', 'id_produto', 'id_entrada_produto', 'quantidade')->orderBy('saidas_produtos.id', 'asc');
     }
 }
