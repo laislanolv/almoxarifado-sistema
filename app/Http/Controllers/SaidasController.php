@@ -40,21 +40,21 @@ class SaidasController extends Controller {
     }
 
     public function storeItem(SaidasProdutosRequest $request, Saida $saida) {
-        // Pegar id_entrada_produto do request, fazer uma pesquisa na tabela e retornar id produto
+        $entrada_produto_data = Saida::getEntradaProdutoData($request->id_entrada_produto);
 
         $data = [
+            'id_entrada' => $entrada_produto_data->id_entrada,
             'id_entrada_produto' => $request->id_entrada_produto,
-            'id_produto' => $request->id_produto,
             'quantidade' => $request->quantidade
         ];
 
-        $produto = Produto::find($request->id_produto);
+        $produto = Produto::find($entrada_produto_data->id_produto);
         $saida->produtos()->attach($produto->id, $data);
         return redirect()->route('saidas.add-item.create', $saida->id)->with('success', 'Produto inserido!');
     }
 
     public function destroyItem(Request $request, Saida $saida) {
-        $saida->produtos()->detach($request->id_produto);
+        $saida->produtos()->wherePivot('id_entrada_produto', $request->id_entrada_produto)->detach();
         return redirect()->route('saidas.add-item.create', $saida->id)->with('success', 'Produto deletado!');
     }
 

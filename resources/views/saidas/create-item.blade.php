@@ -47,6 +47,9 @@
                 <p><b>Itens da Saída</b></p>
             </div>
             <div class="stepwizard-step">
+                {!! Form::open(['method' => 'patch', 'route' => ['saidas.end.store', $saida->id], 'style'=>'display: inline']) !!}
+                {!! Form::button('<i class="fa fa-check"></i>', ['id' => 'btn_form_saidas_end', 'class' => 'btn btn-default btn-circle']) !!}
+                {!! Form::close() !!}
                 <p><b>Finalizar Saída</b></p>
             </div>
         </div>

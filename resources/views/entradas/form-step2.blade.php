@@ -56,7 +56,7 @@
                         <td>{{ $item->nome }}</td>
                         <td>{{ $item->pivot->numero_lote ? $item->pivot->numero_lote : '--'}}</td>
                         <td>{{ $item->pivot->vencimento_lote ? \Carbon\Carbon::parse($item->pivot->vencimento_lote)->format('d/m/Y') : '--' }}</td>
-                        <td class="text-right"><span class="quantidade-inserida">{{ $item->pivot->quantidade }}</span</td>
+                        <td class="text-right"><span class="quantidade-inserida">{{ $item->pivot->quantidade }}</span></td>
                         <td class="text-right"><span class="valor-unitario">{{ $item->pivot->valor_unitario }}</span></td>
                         <td class="text-right"><span class="valor-total-item"></span></td>
                         <td>

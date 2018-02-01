@@ -65,7 +65,6 @@ class ProdutosController extends Controller {
             ->select('sap.quantidade')
             ->join('saidas as sai', 'sap.id_saida', '=', 'sai.id')
             ->where('sap.id_entrada_produto', '=', $id_produto_entrada)
-            ->where('sai.finalizada', '=', '1')
             ->sum('sap.quantidade');
 
         return (float)($quantidade_entrada->quantidade - (float)$quantide_saida);

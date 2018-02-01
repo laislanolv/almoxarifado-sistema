@@ -26,33 +26,23 @@
             <thead>
                 <th>Nome</th>
                 <th class="text-right">Quantidade</th>
-                <th class="text-right">Valor</th>
-                <th class="text-right">Total</th>
                 <th style="width: 45px;"></th>
             </thead>
             <tbody>
                 @foreach ($itens as $item)
                     <tr>
                         <td>{{ $item->nome }}</td>
-                        <td class="text-right"><span class="quantidade-inserida">{{ $item->pivot->quantidade }}</span</td>
-                        <td class="text-right"><span class="valor-unitario">{{ $item->pivot->valor_unitario }}</span></td>
-                        <td class="text-right"><span class="valor-total-item"></span></td>
+                        <td class="text-right"><span class="quantidade-inserida">{{ $item->pivot->quantidade }}</span></td>
                         <td>
                             {!! Form::open(['id' => 'form_excluir_' . $item->pivot->id, 'method' => 'delete', 'route' => ['saidas.del-item.destroy', $saida->id], 'style'=>'display: inline']) !!}
-                            {!! Form::hidden('id_produto', $item->pivot->id_produto) !!}
+                            {!! Form::hidden('id_entrada_produto', $item->pivot->id_entrada_produto) !!}
                             {!! Form::button('<i class="fa fa-trash"></i>', ['class' => 'btn btn-danger modal-excluir', 'style' => 'padding: 1px 6px;']) !!}
                             {!! Form::close() !!}
                         </td>
                     </tr>
                 @endforeach
                     <tr style="background-color: #ddd">
-                        <td class="text-left"><b>Total de <span class="numero-total-itens"></span> itens</b></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td class="text-right"><b><span class="valor-total-nota"></span></b></td>
-                        <td></td>
+                        <td class="text-center" colspan="3"><b>Total de <span class="numero-total-itens"></span> itens</b></td>
                     </tr>
             </tbody>
         </table>
@@ -62,45 +52,20 @@
 @section('scripts')
 <script>
     $(document).ready(function() {
-        $('#quantidade, #valor_unitario').val('');
+        $('#quantidade').val('');
         
         $('.quantidade-inserida').each(function() {
             var text = parseFloat($(this).text()).toFixed(4);
             $(this).text(text.replace('.', ','));
         });
 
-        $('.valor-unitario').each(function() {
-            var text = parseFloat($(this).text());
-            $(this).text(text.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 4 }).replace("R$", "R$ "));
-        });
-
-        $('.valor-total-item').each(function(i) {
-            var quantidade = $('.quantidade-inserida').eq(i).text().replace(',', '.');
-            var valor_unitario = $('.valor-unitario').eq(i).text().replace(',', '.').replace('R$ ', '');
-            var valor_total_item = parseFloat(quantidade) * parseFloat(valor_unitario);
-            $(this).text(valor_total_item.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 4 }).replace("R$", "R$ "));
-        });
-
-        var soma = 0;
         var numero_total_itens = 0;
 
-        $('.valor-total-item').each(function(i) {
-            var valor_total_item = $(this).text().replace('.', '').replace(',', '.').replace('R$ ', '');
-            var valor_total_nota = soma;
-            soma = parseFloat(valor_total_item) + parseFloat(valor_total_nota);
+        $('.numero-total-itens').each(function(i) {
             numero_total_itens++;
         });
         
-        $('.valor-total-nota').text(soma.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 4 }).replace("R$", "R$ "));
-        $('input[name=valor_total_nota]').val(soma);
         $('.numero-total-itens').text(numero_total_itens);
-        $('input[name=quantidade_itens_nota]').val(numero_total_itens);
-
-        var label_valor_nota = parseFloat('{{$saida->valor_nota}}');
-        $('.label-valor-nota').text('Valor Total: ' + label_valor_nota.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', minimumFractionDigits: 4 }).replace("R$", "R$ "));
-        
-        var label_quantidade_itens = parseInt('{{$saida->quantidade_itens_nota}}');
-        $('.label-quantidade-itens').text('Quantidade de Itens: ' + label_quantidade_itens + ' itens');
 
         $('#produtos').select2({
             placeholder: 'Nº da Nota | Data da Entrada | Produto | Unidade de Medida | Nº do Lote | Vencimento do Lote | Estoque',
@@ -118,8 +83,6 @@
                     }
                 },
                 processResults: function(data) {
-                    console.log(data);
-                    
                     return {
                         results: $.map(data, function(produto) {
                             return {
@@ -129,7 +92,7 @@
                                     produto.unidade_medida + ' | ' +
                                     produto.numero_lote + ' | ' +
                                     produto.vencimento_lote + ' | ' +
-                                    produto.quantidade,
+                                    produto.quantidade.toLocaleString('pt-BR', { minimumFractionDigits: 4 }),
                                 id: produto.id_entrada_produto
                             }
                         })
@@ -141,25 +104,17 @@
 
         $('#form_saidas_step2').validate({
             rules: {
-                produtos: 'required',
+                id_entrada_produto: 'required',
                 quantidade: {
                     required: true,
                     maxlength: 15
-                },
-                valor_unitario: {
-                    required: true,
-                    maxlength: 21
                 }
             },
             messages: {
-                produtos: 'Campo obrigatório',
+                id_entrada_produto: 'Campo obrigatório',
                 quantidade: {
                     required: 'Campo obrigatório',
                     maxlength: 'Limite de 15 caracteres'
-                },
-                valor_unitario: {
-                    required: 'Campo obrigatório',
-                    maxlength: 'Limite de 21 caracteres'
                 }
             },
             errorElement: 'em',
@@ -190,7 +145,6 @@
         $(this).prop('disabled', true).html('Aguarde um pouco...');
 
         if ($('#form_saidas_step2').valid()) {
-            $('input[name=valor_unitario]').val($('#valor_unitario').maskMoney('unmasked')[0]);
             $('input[name=quantidade]').val($('#quantidade').maskMoney('unmasked')[0]);
             $('#form_saidas_step2').submit();
         } else {
@@ -204,14 +158,14 @@
         form.find('button').prop('disabled', true);
 
         swal({
-            title: 'Finalizar Entrada',
-            text: 'Atenção! Você está prestes a finalizar esta saida. Tem certeza?', 
+            title: 'Finalizar Saída',
+            text: 'Atenção! Você está prestes a finalizar esta saída. Tem certeza?', 
             icon: 'warning',
             buttons: true,
             buttons: ['Cancelar', 'Sim. Finalizar']
         }).then((willFinalize) => {
             if (willFinalize) {
-                swal('Aguarde... a saida está sendo finalizada!', {
+                swal('Aguarde... a saída está sendo finalizada!', {
                     title: 'Pronto!',
                     icon: 'success',
                     buttons: false
@@ -221,7 +175,7 @@
                     form.submit();
                 }, 2000);
             } else {
-                swal('Entrada não finalizada!', {
+                swal('Saída não finalizada!', {
                     title: 'Cancelado!',
                     icon: 'success',
                 });

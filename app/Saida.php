@@ -2,6 +2,7 @@
 
 namespace Estoque;
 
+use DB;
 use Carbon\Carbon;
 
 use Illuminate\Database\Eloquent\Model;
@@ -23,6 +24,10 @@ class Saida extends Model {
 
     public static function formatData($data) {
         return Carbon::createFromFormat('d/m/Y', $data)->toDateString();
+    }
+
+    public static function getEntradaProdutoData($id_entrada_produto) {
+        return DB::table('entradas_produtos as enp')->where('enp.id', '=', $id_entrada_produto)->first();
     }
 
     public function setor() {
